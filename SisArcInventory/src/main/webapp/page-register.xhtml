@@ -1,0 +1,134 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:hs="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon.png" />
+<title>Arcadapp - Registro</title>
+<!-- Bootstrap Core CSS -->
+<link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<!-- Custom CSS -->
+<link href="css/helper.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+<!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar">
+	<!-- Preloader - style you can find in spinners.css -->
+	<div class="preloader">
+		<svg class="circular" viewBox="25 25 50 50"> <circle
+			class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+			stroke-miterlimit="10" /> </svg>
+	</div>
+	<!-- Main wrapper  -->
+	<div id="main-wrapper">
+
+		<div class="unix-login">
+			<div class="container-fluid">
+				<div class="row justify-content-center">
+					<div class="col-lg-4">
+						<div class="login-content card">
+							<div class="login-form">
+								<h4>Registro - Personal Administrativo</h4>
+								<h:form>
+									<div class="form-group">
+										<label>Cédula</label>
+										<h:inputText class="form-control input-sm"
+											pt:placeholder="Cedula"
+											value="#{personaController.personas.cedula}" />
+									</div>
+
+									<div class="form-group">
+										<label>Nombres Completos</label>
+										<h:inputText class="form-control input-sm"
+											pt:placeholder="Nombres"
+											value="#{personaController.personas.nombre}" />
+									</div>
+
+									<div class="form-group">
+										<label>Apellidos Completos</label>
+										<h:inputText class="form-control input-sm"
+											pt:placeholder="Apellidos"
+											value="#{personaController.personas.apellido}" />
+									</div>
+
+									<div class="form-group">
+										<label>Correo Electronico</label>
+										<h:inputText class="form-control input-sm"
+											pt:placeholder="Email"
+											value="#{personaController.personas.correo}" />
+									</div>
+									<div class="form-group">
+										<label>Contraseña</label>
+										<h:inputSecret class="form-control input-sm"
+											pt:placeholder="Password"
+											value="#{personaController.personas.contrasenia}" />
+									</div>
+
+									<div class="form-group">
+										<label>Repita Contraseña</label>
+										<h:inputSecret class="form-control input-sm"
+											pt:placeholder="Password"
+											value="#{personaController.contrasenia}" />
+									</div>
+
+									<div class="checkbox">
+										<label> <h:selectBooleanCheckbox /> Aceptar los
+											terminos de licencia
+										</label>
+									</div>
+									
+									<h:commandButton value="Registrar" id="Crear"
+										action="#{personaController.crear()}"
+										class="btn btn-success btn-inline"/>
+									
+									<div class="register-link m-t-15 text-center">
+										<p>
+											Ya tienes cuenta ? <a href="page-login.xhtml"> Ingresar</a>
+										</p>
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- End Wrapper -->
+	<!-- All Jquery -->
+	<script src="js/lib/jquery/jquery.min.js"></script>
+	<!-- Bootstrap tether Core JavaScript -->
+	<script src="js/lib/bootstrap/js/popper.min.js"></script>
+	<script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
+	<!-- slimscrollbar scrollbar JavaScript -->
+	<script src="js/jquery.slimscroll.js"></script>
+	<!--Menu sidebar -->
+	<script src="js/sidebarmenu.js"></script>
+	<!--stickey kit -->
+	<script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+	<!--Custom JavaScript -->
+	<script src="js/custom.min.js"></script>
+
+</body>
+
+</html>

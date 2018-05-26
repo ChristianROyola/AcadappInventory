@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+		<h1>Registro Personal</h1>
+
+		<h:outputLabel value="Cedula" />
+		<h:inputText value="#{personaController.personas.cedula}" />
+		<br />
+		
+		<h:outputLabel value="Nombre" />
+		<h:inputText value="#{personaController.personas.nombre}" />
+		<br />
+
+		<h:outputLabel value="Apellido" />
+		<h:inputText value="#{personaController.personas.apellido}" />
+		<br />
+
+		<h:outputLabel value="Correo" />
+		<h:inputText value="#{personaController.personas.correo}" />
+		<br />
+
+		<h:outputLabel value="Contraseña" />
+		<h:inputSecret value="#{personaController.personas.contrasenia}" />
+		<br />
+		
+		<h:outputLabel value="Repita su Contraseña" />
+		<h:inputSecret value="#{personaController.contrasenia}" />
+		<br />
+
+		<h:commandButton action="#{personaController.crear()}"
+			value="Guardar" />
+	</cform>
+
+</body>
+</html>
