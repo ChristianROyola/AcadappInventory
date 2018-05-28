@@ -19,7 +19,6 @@ import com.arcd.inventory.dao.PersonaDao;
 import com.arcd.inventory.modelo.Persona;
 import com.arcd.inventory.utils.SessionUtils;
 
-
 @ManagedBean
 @SessionScoped
 public class PersonaController

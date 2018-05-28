@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  */
 @Entity
-@Table(name = "InventoryPers")
+@Table(name = "InventoryPersona")
 public class Persona 
 {
 	@Id
