@@ -40,7 +40,7 @@ public class Proveedores
 	private String telefono;
 	
 	@Column(name = "prov_correo")
-	@Size(min = 4, message = "Ingrese correo de proveedor")
+	@NotBlank(message = "Ingrese correo de proveedor")
 	private String correo;
 		
 	@Column(name = "prov_fecharegistro")
@@ -48,7 +48,7 @@ public class Proveedores
 	private Date fechregistro;
 	
 	@Column(name = "prov_comentario")
-	private Date descripcion;
+	private String descripcion;
 
 	public int getId() {
 		return id;
@@ -98,11 +98,11 @@ public class Proveedores
 		this.fechregistro = fechregistro;
 	}
 
-	public Date getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 
-	public void setDescripcion(Date descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 

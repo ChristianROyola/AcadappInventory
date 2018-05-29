@@ -19,7 +19,7 @@ public class ProveedorDao
 	/**
 	 *Metodo para buscar
 	 */
-	public Proveedores selectPersona(int id) 
+	public Proveedores selectProveedores(int id) 
 	{
 		Proveedores p = em.find(Proveedores.class, id);
 		return p;
@@ -28,18 +28,18 @@ public class ProveedorDao
 	/**
 	 *Metodo para Insertar
 	 */
-	public void insertPersona(Proveedores p) {
+	public void insertProveedor(Proveedores p) {
 		em.persist(p);
+		System.out.println("Grabando!");
 	}
 
 	public void guardar (Proveedores p) {
-		Proveedores aux = selectPersona(p.getId());
+		Proveedores aux = selectProveedores(p.getId());
 		System.out.println("ID GUARDAR:" +p.getId());
 		if(aux!=null) {
 			//updatePersona(p);
 		}else {
-			System.out.println("Grabando!");
-			insertPersona(p);	
+			insertProveedor(p);	
 		}
 	}
 		
@@ -47,7 +47,7 @@ public class ProveedorDao
 	 *SQl consulta a la base
 	 */
 	public List<Proveedores> listProveedores() {
-		String sql = "select p from Persona p";
+		String sql = "select p from Proveedores p";
 		TypedQuery<Proveedores> query = em.createQuery(sql, Proveedores.class);
 		System.out.println("2");
 		List<Proveedores> lpersonas = query.getResultList();

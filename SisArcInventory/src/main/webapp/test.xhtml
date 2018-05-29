@@ -1,0 +1,71 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<title>Registrar Proveedores</title>
+</h:head>
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Tell the browser to be responsive to screen width -->
+
+<!-- Favicon icon -->
+
+
+<!-- Custom CSS -->
+<link href="css/style.css" rel="stylesheet" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+<!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar">
+	<center>
+
+				<div class="container-fluid">
+					<!-- Start Page Content -->
+					<!-- Row -->
+					<!-- Row -->
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Registro de Proveedores</h4>
+									<h6 class="card-subtitle">Verifique y complete la
+										información</h6>
+
+
+									<h:form>
+										<h:outputLabel value="Ingrese Fecha Inicial" for="finicial" />
+										<p:calendar id="finicial"
+											value="#{nacidoVivoRenaviController.FInicial}"
+											pattern="dd/MM/yyyy" locale="es" required="true"
+											onkeypress="return permite(event, 'none')"
+											requiredMessage="Fecha Inicial Requerida" navigator="true"
+											effect="fadeIn" effectDuration="100">
+
+										</p:calendar>
+									</h:form>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+	</center>
+</body>
+
+</html>
