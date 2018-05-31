@@ -1,18 +1,15 @@
 package com.arcd.inventory.modelo;
 
-import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import javax.persistence.FetchType;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -26,7 +23,7 @@ public class Categoria {
 	@Id
 	@Column(name = "cat_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int id;
+	private int catid;
 
 	@Column(name = "cat_nombre")
 	@NotBlank(message = "Ingrese la categoria")
@@ -36,16 +33,19 @@ public class Categoria {
 	@Column(name = "cat_descripcion")
 	private String descipcion;
 
-	//@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	//@JoinColumn(name = "cont_cat_id", referencedColumnName = "cat_id")
-	//private List<Contenido> contenido;
-
-	public int getId() {
-		return id;
+	//bi-directional many-to-one association to Producto
+	@OneToMany(mappedBy="categoria",
+			 cascade = CascadeType.ALL, 
+			 orphanRemoval = true)
+	
+	private List<Producto> productos;
+	
+	public int getCatid() {
+		return catid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCatid(int catid) {
+		this.catid = catid;
 	}
 
 	public String getNombre() {
@@ -64,25 +64,19 @@ public class Categoria {
 		this.descipcion = descipcion;
 	}
 
-	//public List<Contenido> getContenidos() {
-	//	return contenido;
-	//}
+	
+	public List<Producto> getProductos() {
+		return productos;
+	}
 
-	//public void setContenidos(List<Contenido> contenidos) {
-	///	this.contenido = contenidos;
-	//}
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
+	}
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nombre=" + nombre + ", descipcion=" + descipcion + "]";
+		return "Categoria [id=" + catid + ", nombre=" + nombre + ", descipcion=" + descipcion + "]";
 	}
 
-	/*
-	public void addContent(Contenido contenidos) {
-		if (contenido == null) {
-			contenido = new ArrayList<>();
-			contenido.add(contenidos);
-		}
-	}
-	*/
+	
 }

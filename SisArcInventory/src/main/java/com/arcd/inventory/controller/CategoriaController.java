@@ -1,5 +1,6 @@
 package com.arcd.inventory.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 
 import com.arcd.inventory.dao.CategoriaDao;
 import com.arcd.inventory.modelo.Categoria;
+import com.arcd.inventory.modelo.Producto;
 
 @ManagedBean
 public class CategoriaController {
@@ -17,6 +19,7 @@ public class CategoriaController {
 	
 	private Categoria categoria = null;
 	private List<Categoria> categorias;
+    private List<Producto> productos = new ArrayList<>();
 	
 	private int id;
 		
@@ -52,7 +55,7 @@ public class CategoriaController {
 	}
 
 	public void loadCategoria(){	
-		categorias = catedao.listCategoria();
+		categorias = catedao.getCategorias();
 	}
 		
 	public String loadCategoriaEditar(int id){
@@ -84,10 +87,16 @@ public class CategoriaController {
 		categoria.setDescipcion("");
 	}
 	
-	/*
-	public String agregaCategoria(){
-		categoria.getContenidos().add(new Contenido());
-		return null;
+	public Producto addProducto(Producto producto) {
+		productos.add(producto);
+		producto.setCategoria(new Categoria());
+		return producto;
 	}
-	*/
+	
+	public Producto removeProducto(Producto producto) {
+		productos.remove(producto);
+		producto.setCategoria(null);
+		return producto;
+	}
+	
 }

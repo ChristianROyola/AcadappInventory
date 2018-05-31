@@ -131,7 +131,7 @@ public class PersonaController
 
 				System.out.println("CONTEXTO USER");
 				try {
-					contex.getExternalContext().redirect("index.xhtml");
+					contex.getExternalContext().redirect("index-blank.xhtml");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

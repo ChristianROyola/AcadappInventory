@@ -17,7 +17,7 @@ public class CategoriaDao {
 	private EntityManager em;
 
 	public void guardarCategoria(Categoria c) {
-		Categoria aux = leerCategoria(c.getId());
+		Categoria aux = leerCategoria(c.getCatid());
 		if (aux != null) {
 			actualizarCategoria(c);
 		} else {
@@ -25,6 +25,12 @@ public class CategoriaDao {
 		}
 	}
 
+	public Categoria read(int id){
+		Categoria categoria = em.find(Categoria.class, id);
+		categoria.getProductos().size();
+		return categoria;
+	}
+	
 	public void insetarCategoria(Categoria c) {
 		em.persist(c);
 	}
@@ -43,15 +49,16 @@ public class CategoriaDao {
 		em.remove(c);
 	}
 
-	public List<Categoria> listCategoria() 
-	{
-		Query query = em.createQuery("SELECT c FROM Categoria c", Categoria.class);
-		List<Categoria> listado = query.getResultList();
-		return listado;
+	public List<Categoria> getCategorias(){
+		String jpql = "SELECT distinct c FROM Categoria c LEFT JOIN FETCH c.productos";
+		Query query = em.createQuery(jpql, Categoria.class);
+		List<Categoria> categorias = query.getResultList();
+		return categorias;
 	}
 	
+	
 	public List<Categoria> getCategorias2(){
-		String jpql = "SELECT c FROM Categoria c";
+		String jpql = "SELECT distinct c FROM Categoria c";
 		Query query = em.createQuery(jpql, Categoria.class);
 		List<Categoria> categorias = query.getResultList();
 		return categorias;
