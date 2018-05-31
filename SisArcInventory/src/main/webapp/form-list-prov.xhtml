@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" template="index-blank.xhtml">
+
+	<ui:define name="titulo">Proveedores</ui:define>
+	<ui:define name="contenido">
+
+		<h:form>
+			<h:outputText value="El registro no contiene datos"
+				rendered="#{empty  proveedorController.lproveedores}"></h:outputText>
+			<h:dataTable var="vproveedor" style="color:black"
+				class="table table-hover"
+				value="#{proveedorController.listaProveedores()}" border="2">
+
+				<h:column Style="color: black">
+					<f:facet name="header">Id</f:facet>
+		#{vproveedor.id}
+		</h:column>
+
+				<h:column Style="color: black">
+					<f:facet name="header">Nombre:</f:facet>
+		#{vproveedor.nombre}
+		</h:column>
+
+				<h:column Style="color: black">
+					<f:facet name="header">Telefono</f:facet>
+		#{vproveedor.telefono}
+		</h:column>
+
+		<h:column Style="color: black">
+							<f:facet name="header">Dirección</f:facet>
+				#{vproveedor.direccion}
+				</h:column>
+		
+				<h:column Style="color: black">
+					<f:facet name="header">Correo</f:facet>
+		#{vproveedor.correo}
+		</h:column>
+
+				<h:column Style="color: black">
+					<f:facet name="header">Fecha Registro</f:facet>
+		#{vproveedor.fechregistro}
+		</h:column>
+
+				<h:column Style="color: black">
+					<f:facet name="header">
+					Observación</f:facet>
+		#{vproveedor.descripcion}
+		</h:column>
+
+			</h:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+

@@ -1,0 +1,85 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Registrar Proveedores</title>
+</h:head>
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon.png" />
+<!-- Bootstrap Core CSS -->
+<link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Custom CSS -->
+<link href="css/helper.css" rel="stylesheet" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+<!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<h:body class="fix-header fix-sidebar">
+	<ui:composition template="index-blank.xhtml">
+		<ui:define name="titulo">Proveedores</ui:define>
+		<ui:define name="contenido">
+			<center>
+				<!-- Main wrapper  -->
+
+				<!-- End Left Sidebar  -->
+				<!-- Page wrapper  -->
+
+
+				<!-- Start Page Content -->
+				<!-- Row -->
+				<!-- Row -->
+
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Registro Categorias Productos</h4>
+							<h6 class="card-subtitle">Verifique y complete la
+								información</h6>
+							<h:form role="form" id="formregistro">
+								<h:panelGrid columns="3">
+
+									<h:outputLabel value="Nombre Categoria:" for="nombCategoria" />
+									<h:inputText id="nombCategoria"
+										value="#{categoriaController.categoria.nombre}" class="form-control"
+										pt:placeholder="Ejm:Quimicos" />
+									<h:message for="nombCategoria" />
+
+									<h:outputLabel value="Descripción:" for="catDescripcion" />
+									<h:inputTextarea id="catDescripcion"
+										value="#{categoriaController.categoria.descipcion}"
+										class="form-control" requiredMessage="Ingrese Descripcion"
+										cols="100" rows="5" />
+									<h:message for="catDescripcion" />
+
+									<h:commandButton action="#{categoriaController.guardar()}"
+										value="Guardar" class="btn btn-success" />
+								</h:panelGrid>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</center>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

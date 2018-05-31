@@ -92,7 +92,7 @@ public class PersonaController
 					inicializar();
 					init();
 					this.conincidencia = "Grabado exitoso!";
-					return "page-login";
+					return "form-list-admis";
 				} else {
 					this.conincidencia = "El formato del correo es incorrecto";
 					return null;

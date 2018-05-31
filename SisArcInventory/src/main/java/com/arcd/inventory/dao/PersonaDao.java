@@ -55,7 +55,6 @@ public class PersonaDao
 		TypedQuery<Persona> query = em.createQuery(sql, Persona.class);
 		System.out.println("2");
 		List<Persona> lpersonas = query.getResultList();
-		
 		return lpersonas;
 	}
 	

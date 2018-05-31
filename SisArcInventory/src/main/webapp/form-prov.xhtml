@@ -1,0 +1,142 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Registrar Proveedores</title>
+</h:head>
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	href="images/favicon.png" />
+<!-- Bootstrap Core CSS -->
+<link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Custom CSS -->
+<link href="css/helper.css" rel="stylesheet" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+<!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<h:body class="fix-header fix-sidebar">
+	<ui:composition template="index-blank.xhtml">
+	<ui:define name="titulo">Proveedores</ui:define>
+	<ui:define name="contenido">
+	<center>
+		<!-- Main wrapper  -->
+
+		<!-- End Left Sidebar  -->
+		<!-- Page wrapper  -->
+
+
+		<!-- Start Page Content -->
+		<!-- Row -->
+		<!-- Row -->
+
+		<div class="col-lg-6">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Registro de Proveedores</h4>
+					<h6 class="card-subtitle">Verifique y complete la información</h6>
+					<h:form class="form p-t-20">
+						<div class="form-group">
+							<label for="exampleInputuname">Nombre de Proveedor * </label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="ti-user"></i>
+								</div>
+								<h:inputText type="text" class="form-control" id="InputNombre"
+									placeholder="Nombre"
+									value="#{proveedorController.proveedores.nombre}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Dirección de Proveedor *
+							</label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="ti-location-pin"></i>
+								</div>
+								<h:inputText type="email" class="form-control"
+									id="InputDireccion" placeholder="Direccion"
+									value="#{proveedorController.proveedores.direccion}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputuname">Teléfono de Proveedor * </label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="ti-mobile"></i>
+								</div>
+								<h:inputText type="text" class="form-control" id="InputTelefono"
+									placeholder="Telefono"
+									value="#{proveedorController.proveedores.telefono}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputuname">Correo de Proveedor * </label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="ti-email"></i>
+								</div>
+								<h:inputText type="text" class="form-control" id="InputCorreo"
+									placeholder="Email"
+									value="#{proveedorController.proveedores.correo}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Fecha de registro * </label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="ti-calendar"></i>
+								</div>
+								<p:calendar id="german" value="#{proveedorController.fecha}"
+									locale="de" navigator="true" pattern="dd/mm/yyyy" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Comentario sobre Proveedor </label>
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="ti-comment"></i>
+								</div>
+								<h:inputTextarea class="form-control" id="InputComent"
+									placeholder="Comentario" requiredMessage="Ingrese Descripcion"
+									cols="100" rows="5"
+									value="#{proveedorController.proveedores.descripcion}" />
+							</div>
+						</div>
+
+						<h:commandButton value="Registrar" id="Crear"
+							action="#{proveedorController.crear()}"
+							class="btn btn-success btn-inline" />
+
+						<button type="submit"
+							class="btn btn-inverse waves-effect waves-light">Cancelar</button>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</center>
+	</ui:define>
+	</ui:composition>
+</h:body>
+</html>
