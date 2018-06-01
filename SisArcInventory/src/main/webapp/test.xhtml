@@ -8,10 +8,6 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-<h:head>
-	<title>Registrar Proveedores</title>
-</h:head>
-
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,43 +25,52 @@
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
+<body>
+	<h:form role="form" id="formregistro">
+		<h:panelGrid columns="3">
 
-<body class="fix-header fix-sidebar">
-	<center>
+			<h:outputLabel value="Nombre Categoria:" for="nombCategoria" />
+			<h:inputText id="nombCategoria"
+				value="#{categoriaController.categoria.nombre}" class="form-control"
+				pt:placeholder="Ejm:Quimicos" />
+			<h:message for="nombCategoria" />
 
-				<div class="container-fluid">
-					<!-- Start Page Content -->
-					<!-- Row -->
-					<!-- Row -->
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">Registro de Proveedores</h4>
-									<h6 class="card-subtitle">Verifique y complete la
-										información</h6>
+			<h:outputLabel value="Descripción:" for="catDescripcion" />
+			<h:inputTextarea id="catDescripcion"
+				value="#{categoriaController.categoria.descipcion}"
+				class="form-control" requiredMessage="Ingrese Descripcion"
+				cols="100" rows="5" />
+			<h:message for="catDescripcion" />
+
+			<h:commandButton action="#{categoriaController.guardar()}"
+				value="Guardar" class="btn btn-success" />
+
+		</h:panelGrid>
+
+		<h:dataTable var="vproveedor" style="color:black"
+			class="table table-hover"
+			value="#{categoriaController.categoria.productos}" border="2">
+
+			<h:column Style="color: black">
+				<f:facet name="header">Id</f:facet>
+		#{vproveedor.id}
+		</h:column>
+
+			<h:column Style="color: black">
+				<f:facet name="header">Nombre:</f:facet>
+		#{vproveedor.nombre}
+		</h:column>
 
 
-									<h:form>
-										<h:outputLabel value="Ingrese Fecha Inicial" for="finicial" />
-										<p:calendar id="finicial"
-											value="#{nacidoVivoRenaviController.FInicial}"
-											pattern="dd/MM/yyyy" locale="es" required="true"
-											onkeypress="return permite(event, 'none')"
-											requiredMessage="Fecha Inicial Requerida" navigator="true"
-											effect="fadeIn" effectDuration="100">
+			<h:column Style="color: black">
+				<f:facet name="header">
+					Observación</f:facet>
+		#{vproveedor.descripcion}
+		</h:column>
 
-										</p:calendar>
-									</h:form>
+		</h:dataTable>
 
+	</h:form>
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-	</center>
 </body>
-
 </html>

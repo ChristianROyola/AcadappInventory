@@ -1,15 +1,16 @@
 package com.arcd.inventory.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -22,8 +23,7 @@ public class Categoria {
 
 	@Id
 	@Column(name = "cat_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int catid;
+	private String catid;
 
 	@Column(name = "cat_nombre")
 	@NotBlank(message = "Ingrese la categoria")
@@ -34,17 +34,15 @@ public class Categoria {
 	private String descipcion;
 
 	//bi-directional many-to-one association to Producto
-	@OneToMany(mappedBy="categoria",
-			 cascade = CascadeType.ALL, 
-			 orphanRemoval = true)
-	
+	@OneToMany(cascade = { CascadeType.ALL}, fetch = FetchType.EAGER)
+	@JoinColumn(name="categoria", referencedColumnName="cat_id")
 	private List<Producto> productos;
 	
-	public int getCatid() {
+	public String getCatid() {
 		return catid;
 	}
 
-	public void setCatid(int catid) {
+	public void setCatid(String catid) {
 		this.catid = catid;
 	}
 
@@ -72,11 +70,18 @@ public class Categoria {
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
+	
+	public void addProductos(Producto products)
+	{
+		if(productos==null)
+			productos = new ArrayList<>();
+		productos.add(products);
+	}
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + catid + ", nombre=" + nombre + ", descipcion=" + descipcion + "]";
+		return "Categoria [catid=" + catid + ", nombre=" + nombre + ", descipcion=" + descipcion + ", productos="
+				+ productos + "]";
 	}
-
 	
 }

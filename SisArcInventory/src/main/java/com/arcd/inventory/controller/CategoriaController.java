@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
 import com.arcd.inventory.dao.CategoriaDao;
@@ -12,6 +13,7 @@ import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Producto;
 
 @ManagedBean
+@SessionScoped
 public class CategoriaController {
 	
 	@Inject
@@ -21,19 +23,20 @@ public class CategoriaController {
 	private List<Categoria> categorias;
     private List<Producto> productos = new ArrayList<>();
 	
-	private int id;
+	private String id;
 		
 	@PostConstruct
 	public void init(){
 		categoria=new Categoria();
+		categoria.addProductos(new Producto());
 		loadCategoria();
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 		loadCategoriaEditar(id);//parametros
 	}
@@ -58,7 +61,7 @@ public class CategoriaController {
 		categorias = catedao.getCategorias();
 	}
 		
-	public String loadCategoriaEditar(int id){
+	public String loadCategoriaEditar(String id){
 		
 		System.out.println("Cargando datos de categoria a editar" + id);
 		categoria = catedao.leerCategoria(id);
@@ -66,19 +69,40 @@ public class CategoriaController {
 		return null;
 	}
 	
-	public String eliminaCategoria(int id){
+	public String eliminaCategoria(String id){
 		catedao.eliminarCategoria(id);
 		//return "listadoCategoriaAcciones";
 		return null;
 	}
 	
-	public String guardar(){
-		System.out.println(categoria);	
-		catedao.guardarCategoria(categoria);
+	public String guardar()
+	{
+		System.out.println("RECUPEDANDO ------->>>>> "+categoria);	
+		try {
+			
+			if (this.id!=null) 
+			{
+				catedao.actualizarCategoria(categoria);
+			} else {
+				catedao.insetarCategoria(categoria);
+			}
+		} catch (Exception e) 
+		{
+			return null;
+			// TODO: handle exception
+		}
+		//catedao.guardarCategoria(categoria);
+		
 		inicializar();
 		//loadCategoria();
 		//return null;
 		//return "listadoCategoria";
+		return null;
+	}
+	
+	public String addProdducto()
+	{
+		categoria.addProductos(new Producto());
 		return null;
 	}
 	
@@ -87,6 +111,7 @@ public class CategoriaController {
 		categoria.setDescipcion("");
 	}
 	
+	/*
 	public Producto addProducto(Producto producto) {
 		productos.add(producto);
 		producto.setCategoria(new Categoria());
@@ -98,5 +123,5 @@ public class CategoriaController {
 		producto.setCategoria(null);
 		return producto;
 	}
-	
+	*/
 }

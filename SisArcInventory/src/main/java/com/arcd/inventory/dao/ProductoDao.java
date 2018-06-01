@@ -39,7 +39,7 @@ public class ProductoDao {
 	 * Metodo para Leer productos
 	 */
 
-	public Producto leerProducto(int id) {
+	public Producto leerProducto(String id) {
 		Producto e = em.find(Producto.class, id);
 		return e;
 	}
@@ -59,7 +59,7 @@ public class ProductoDao {
 	 * 
 	 * @param id
 	 */
-	public void eliminarProducto(int id) {
+	public void eliminarProducto(String id) {
 		Producto e = leerProducto(id);
 		em.remove(e);
 	}

@@ -38,7 +38,9 @@ public class ProductoController
 	public void init() 
 	{
 		producto = new Producto(); 
-		loadProducto();
+		c = new Categoria();
+		//catcontroller = new CategoriaController();
+		//loadProducto();
 	}
 	
 	public void loadProducto() 
@@ -50,14 +52,15 @@ public class ProductoController
 	 * Mantenimiento Controlladores del ProductoController
 	 */
 	
-	public String loadProductoEdit(int id) {
+	public String loadProductoEdit(String id) {
 		producto = productodao.leerProducto(id);
-		return "CrearEvento";
+		//return "CrearEvento";
+		return null;
 	}
 	
 	public String insertar() {
 		productodao.guardarProducto(producto);
-		loadProducto();
+		//loadProducto();
 		//return "listarEventos";
 		return null;
 	}
@@ -67,11 +70,11 @@ public class ProductoController
 		return null;
 	}
 	
-	public String leer(int id) {
+	public String leer(String id) {
 		producto = productodao.leerProducto(id);
 		return null;
 	}
-	public String eliminar(int id) {
+	public String eliminar(String id) {
 		productodao.eliminarProducto(id);
 		//return "eliminarEvento";
 		return null;
@@ -145,6 +148,5 @@ public class ProductoController
 	public void setC(Categoria c) {
 		this.c = c;
 	}
-	
 	
 }

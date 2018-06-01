@@ -60,13 +60,13 @@
 
 									<h:outputLabel value="Nombre Categoria:" for="nombCategoria" />
 									<h:inputText id="nombCategoria"
-										value="#{productoController.c.nombre}" class="form-control"
+										value="#{categoriaController.categoria.nombre}" class="form-control"
 										pt:placeholder="Ejm:Quimicos" />
 									<h:message for="nombCategoria" />
 
 									<h:outputLabel value="Descripción:" for="catDescripcion" />
 									<h:inputTextarea id="catDescripcion"
-										value="#{productoController.c.descipcion}"
+										value="#{categoriaController.categoria.descipcion}"
 										class="form-control" requiredMessage="Ingrese Descripcion"
 										cols="100" rows="5" />
 									<h:message for="catDescripcion" />
@@ -76,23 +76,23 @@
 										value="#{productoController.producto.nombre}"
 										class="form-control" requiredMessage="Ingrese Nombre Producto"
 										cols="100" rows="5" />
-									<h:message for="catDescripcion" />
+									<h:message for="nombProduct" />
 									
 									<h:outputLabel value="Descripción Producto" for="descProduct" />
 									<h:inputTextarea id="descProduct"
 										value="#{productoController.producto.descripcion}"
 										class="form-control" requiredMessage="Ingrese descripcion Producto"
 										cols="100" rows="5" />
-									<h:message for="catDescripcion" />
+									<h:message for="descProduct" />
 									
-								    <h:outputLabel value="Direccion Producto" for="direccProduct" />
-									<h:inputTextarea id="nombProduct"
+								    <h:outputLabel value="Precio Unitario" for="precProduct" />
+									<h:inputTextarea id="precProduct"
 										value="#{productoController.producto.preciounit}"
 										class="form-control" requiredMessage="Ingrese Nombre Producto"
 										cols="100" rows="5" />
-									<h:message for="catDescripcion" />
+									<h:message for="precProduct" />
 									
-									<h:commandButton action="#{productoController.insertar()}"
+									<h:commandButton action="#{productoController.insertar()}" 
 										value="Guardar" class="btn btn-success" />
 								</h:panelGrid>
 							</h:form>

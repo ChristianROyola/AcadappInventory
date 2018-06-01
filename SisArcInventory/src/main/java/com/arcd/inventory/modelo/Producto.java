@@ -22,8 +22,7 @@ public class Producto
 {
 	@Id
 	@Column(name = "product_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int id;
+	private String id;
 	
 	@Column(name = "product_nombre")
 	@NotBlank(message = "Ingrese el nombre del producto")
@@ -33,19 +32,14 @@ public class Producto
 	@NotBlank(message = "Ingrese la descripción del producto")
 	private String descripcion;
 	
-	@Column(nullable=false, precision=131089)
+	@Column(nullable=false, precision=65)
 	private BigDecimal preciounit;
 	
-	//bi-directional many-to-one association to Categoria
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="catid", nullable=false)
-	@JsonIgnore
-	private Categoria categoria;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -66,12 +60,6 @@ public class Producto
 	}
 	public void setPreciounit(BigDecimal preciounit) {
 		this.preciounit = preciounit;
-	}
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
 	}
 		
     @Override

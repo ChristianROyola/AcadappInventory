@@ -57,11 +57,17 @@
 								información</h6>
 							<h:form role="form" id="formregistro">
 								<h:panelGrid columns="3">
-
+								
+								<h:outputLabel value="ID Categoria:" for="idCategoria" />
+									<h:inputText id="idCategoria"
+										value="#{categoriaController.categoria.catid}"
+										class="form-control" pt:placeholder="Ejm: cat1" />
+									<h:message for="idCategoria" />
+								
 									<h:outputLabel value="Nombre Categoria:" for="nombCategoria" />
 									<h:inputText id="nombCategoria"
-										value="#{categoriaController.categoria.nombre}" class="form-control"
-										pt:placeholder="Ejm:Quimicos" />
+										value="#{categoriaController.categoria.nombre}"
+										class="form-control" pt:placeholder="Ejm:Quimicos" />
 									<h:message for="nombCategoria" />
 
 									<h:outputLabel value="Descripción:" for="catDescripcion" />
@@ -71,9 +77,38 @@
 										cols="100" rows="5" />
 									<h:message for="catDescripcion" />
 
-									<h:commandButton action="#{categoriaController.guardar()}"
-										value="Guardar" class="btn btn-success" />
 								</h:panelGrid>
+								
+								<h:commandButton action="#{categoriaController.addProdducto()}" value="Registrar producto" />
+								
+								<h:dataTable var="vproveedor" style="color:black"
+									class="table table-hover"
+									value="#{categoriaController.categoria.productos}" border="2">
+
+									<h:column Style="color: black">
+										<f:facet name="header">Id</f:facet>
+										<h:inputText value="#{vproveedor.id}" />
+									</h:column>
+
+									<h:column Style="color: black">
+										<f:facet name="header">Nombre:</f:facet>
+										<h:inputText value="#{vproveedor.nombre}" />
+									</h:column>
+									
+									<h:column Style="color: black">
+										<f:facet name="header">Descripcion Producto</f:facet>
+									    <h:inputText value="#{vproveedor.descripcion}" />
+									</h:column>
+									
+									<h:column Style="color: black">
+										<f:facet name="header">Precio Unitario</f:facet>
+									    <h:inputText value="#{vproveedor.preciounit}" />
+									</h:column>
+							
+								</h:dataTable>
+
+								<h:commandButton action="#{categoriaController.guardar()}"
+									value="Guardar" class="btn btn-success" />
 							</h:form>
 						</div>
 					</div>
