@@ -1,76 +1,22 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
+<h:head>
+	<title>Departments</title>
+</h:head>
+<h:body>
+             * Seleccione Categoria Contenido: 
+            <h:selectOneMenu id="categoriaList"
+				value="#{productoController.selectedDept}">
+				<f:selectItems value="#{categoriaController.allDepts}" />
+				<f:ajax render="opcionActual" />
+			</h:selectOneMenu>
+			<p />
 
-<head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<!-- Tell the browser to be responsive to screen width -->
-
-<!-- Favicon icon -->
-
-
-<!-- Custom CSS -->
-<link href="css/style.css" rel="stylesheet" />
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-<!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-</head>
-<body>
-	<h:form role="form" id="formregistro">
-		<h:panelGrid columns="3">
-
-			<h:outputLabel value="Nombre Categoria:" for="nombCategoria" />
-			<h:inputText id="nombCategoria"
-				value="#{categoriaController.categoria.nombre}" class="form-control"
-				pt:placeholder="Ejm:Quimicos" />
-			<h:message for="nombCategoria" />
-
-			<h:outputLabel value="Descripción:" for="catDescripcion" />
-			<h:inputTextarea id="catDescripcion"
-				value="#{categoriaController.categoria.descipcion}"
-				class="form-control" requiredMessage="Ingrese Descripcion"
-				cols="100" rows="5" />
-			<h:message for="catDescripcion" />
-
-			<h:commandButton action="#{categoriaController.guardar()}"
-				value="Guardar" class="btn btn-success" />
-
-		</h:panelGrid>
-
-		<h:dataTable var="vproveedor" style="color:black"
-			class="table table-hover"
-			value="#{categoriaController.categoria.productos}" border="2">
-
-			<h:column Style="color: black">
-				<f:facet name="header">Id</f:facet>
-		#{vproveedor.id}
-		</h:column>
-
-			<h:column Style="color: black">
-				<f:facet name="header">Nombre:</f:facet>
-		#{vproveedor.nombre}
-		</h:column>
-
-
-			<h:column Style="color: black">
-				<f:facet name="header">
-					Observación</f:facet>
-		#{vproveedor.descripcion}
-		</h:column>
-
-		</h:dataTable>
-
-	</h:form>
-
-</body>
+	<h:commandButton value="Mostrar" />
+</h:body>
 </html>

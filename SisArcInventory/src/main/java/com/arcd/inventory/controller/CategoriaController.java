@@ -2,10 +2,12 @@ package com.arcd.inventory.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import com.arcd.inventory.dao.CategoriaDao;
@@ -20,10 +22,13 @@ public class CategoriaController {
 	private CategoriaDao catedao;
 	
 	private Categoria categoria = null;
-	private List<Categoria> categorias;
+	private List<Categoria> lcategorias;
     private List<Producto> productos = new ArrayList<>();
 	
-	private String id;
+    private SelectItem[] categoriaSelectItems;
+    private String categitem;
+    
+    private String id;
 		
 	@PostConstruct
 	public void init(){
@@ -41,6 +46,25 @@ public class CategoriaController {
 		loadCategoriaEditar(id);//parametros
 	}
 	
+	public SelectItem[] getCategoriaSelectItems() {
+		return categoriaSelectItems;
+	}
+
+	public void setCategoriaSelectItems(SelectItem[] categoriaSelectItems) {
+		this.categoriaSelectItems = categoriaSelectItems;
+	}
+
+	public String getCategitem() {
+		return categitem;
+	}
+
+	public void setCategitem(String categitem)
+	{
+		this.categitem = categitem;
+		createCategoriaSelectItems();
+        //Logger.info(String.format("Selected country: %s", categitem));
+	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -50,17 +74,22 @@ public class CategoriaController {
 	}
 	
 	public List<Categoria> getCategorias() {
-		return categorias;
+		return lcategorias;
 	}
 
 	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
+		this.lcategorias = categorias;
 	}
 
-	public void loadCategoria(){	
-		categorias = catedao.getCategorias();
+	public void loadCategoria(){
+		lcategorias = catedao.getCategorias2();
 	}
-		
+	
+	public List<Categoria> listaCategorias(){
+		lcategorias = catedao.getCategorias2();
+		return lcategorias;
+	}
+	
 	public String loadCategoriaEditar(String id){
 		
 		System.out.println("Cargando datos de categoria a editar" + id);
@@ -106,9 +135,38 @@ public class CategoriaController {
 		return null;
 	}
 	
-	public void inicializar() {
+	public void inicializar() 
+	{
+		categoria.setCatid("");
 		categoria.setNombre("");
 		categoria.setDescipcion("");
+	}
+	
+	private void createCategoriaSelectItems(){
+        String[] categorias = catedao.listaitemcategoria();
+        if (categorias != null && categorias.length > 0) {
+        	categitem = categorias[0];
+        	categoriaSelectItems = new SelectItem[categorias.length];
+            for (int i = 0; i < categorias.length; i++)
+            	categoriaSelectItems[i] = new SelectItem(categorias[i], categorias[i]);
+        } else {
+        	categitem = "";
+        	categoriaSelectItems = new SelectItem[0];
+        }
+    }
+	
+	public List<Categoria> getAllDepts() {
+		doList();
+		return catedao.getCategorias2();
+        
+    }
+	
+	public String doList() {
+		List<Categoria> categorias = catedao.getCategorias();
+		for (Categoria categ : categorias) {
+			System.out.println(categ.toString());
+		}
+		return null;
 	}
 	
 	/*

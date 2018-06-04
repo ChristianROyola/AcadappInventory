@@ -27,20 +27,21 @@ public class ProductoController
 	
 	private List<Producto> lproducto;
 	
-	//Busquedad de Eventos
+	//Busquedad de Productos
 	private List<Producto> listadoFiltrado;
 
 	private String filtro;
 	
 	private Categoria c;
 	
+	private String selectedDept;
+	
 	@PostConstruct
 	public void init() 
 	{
 		producto = new Producto(); 
 		c = new Categoria();
-		//catcontroller = new CategoriaController();
-		//loadProducto();
+		loadProducto();
 	}
 	
 	public void loadProducto() 
@@ -60,7 +61,8 @@ public class ProductoController
 	
 	public String insertar() {
 		productodao.guardarProducto(producto);
-		//loadProducto();
+		loadProducto();
+		inicializar();
 		//return "listarEventos";
 		return null;
 	}
@@ -78,7 +80,6 @@ public class ProductoController
 		productodao.eliminarProducto(id);
 		//return "eliminarEvento";
 		return null;
-
 	}
 	  
 	public List<Producto> listaProductos(){
@@ -92,6 +93,15 @@ public class ProductoController
 		listadoFiltrado = productodao.getProductosNombre(filtro);	
 		return null;
 	}
+	
+	public void inicializar() 
+	{
+		producto.setId("");
+		producto.setNombre("");
+		producto.setDescripcion("");
+		producto.setPreciounit(null);
+	}
+	
 
 	public CategoriaDao getCatedao() {
 		return catedao;
@@ -148,5 +158,13 @@ public class ProductoController
 	public void setC(Categoria c) {
 		this.c = c;
 	}
-	
+
+	public String getSelectedDept() {
+		return selectedDept;
+	}
+
+	public void setSelectedDept(String selectedDept) {
+		this.selectedDept = selectedDept;
+	}
+
 }

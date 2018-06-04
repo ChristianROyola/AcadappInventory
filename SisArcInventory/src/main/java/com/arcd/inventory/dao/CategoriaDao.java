@@ -6,8 +6,10 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.arcd.inventory.modelo.Categoria;
+import com.arcd.inventory.modelo.Producto;
 
 
 @Stateless
@@ -57,11 +59,20 @@ public class CategoriaDao {
 	}
 	
 	
-	public List<Categoria> getCategorias2(){
+	public List<Categoria> getCategorias2()
+	{
 		String jpql = "SELECT distinct c FROM Categoria c";
 		Query query = em.createQuery(jpql, Categoria.class);
 		List<Categoria> categorias = query.getResultList();
 		return categorias;
+	}
+	
+	public String[] listaitemcategoria() {
+		String sql = "Select e from Categoria e";
+		TypedQuery<Categoria> query = em.createQuery(sql, Categoria.class);
+		List<Categoria> categorias = query.getResultList();
+		String[] stringArray = categorias.toArray(new String[0]);
+		return stringArray;
 	}
 	
 }

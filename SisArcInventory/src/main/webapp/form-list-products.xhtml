@@ -5,30 +5,35 @@
 
 	<ui:define name="titulo">Categoria Contenidos</ui:define>
 	<ui:define name="contenido">
-					<h4 class="card-title">Listado Categorias Productos</h4>
+		<h4 class="card-title">Listado Categorias Productos</h4>
 
 		<h:form>
-			<h:outputText value="No se han registrado categorias"
-				rendered="#{empty  categoriaController.listaCategorias()}"></h:outputText>
-			
-			<h:dataTable var="listaCategoria" style="color:black"
-				value="#{categoriaController.listaCategorias()}" border="2" class="table">
+			<h:outputText value="No se han registrado productos"
+				rendered="#{empty  productoController.listaProductos()}"></h:outputText>
+
+			<h:dataTable var="listaproduct" style="color:black"
+				value="#{productoController.listaProductos()}" border="2" class="table table-hover">
 
 				<h:column Style="color: black">
-					<f:facet name="header">Código</f:facet>
-			#{listaCategoria.catid}
+					<f:facet name="header">Codigo</f:facet>
+			#{listaproduct.id}
 		</h:column>
 
 				<h:column Style="color: black">
 					<f:facet name="header">Nombre</f:facet>
-			#{listaCategoria.nombre}
+			#{listaproduct.nombre}
 		</h:column>
 
 				<h:column Style="color: black">
 					<f:facet name="header">Descripción</f:facet>
-			#{listaCategoria.descipcion}
+			#{listaproduct.descripcion}
 		</h:column>
 
+				<h:column Style="color: black">
+					<f:facet name="header">Precio Unitario</f:facet>
+			#{listaproduct.preciounit}
+		</h:column>
+		
 			</h:dataTable>
 		</h:form>
 	</ui:define>

@@ -34,8 +34,7 @@ public class Producto
 	
 	@Column(nullable=false, precision=65)
 	private BigDecimal preciounit;
-	
-	
+		
 	public String getId() {
 		return id;
 	}
@@ -61,8 +60,8 @@ public class Producto
 	public void setPreciounit(BigDecimal preciounit) {
 		this.preciounit = preciounit;
 	}
-		
-    @Override
+
+	@Override
     public int hashCode() {
         return 31;
     }

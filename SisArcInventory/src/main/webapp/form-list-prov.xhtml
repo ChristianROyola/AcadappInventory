@@ -9,6 +9,7 @@
 		<h:form>
 			<h:outputText value="El registro no contiene datos"
 				rendered="#{empty  proveedorController.lproveedores}"></h:outputText>
+				
 			<h:dataTable var="vproveedor" style="color:black"
 				class="table table-hover"
 				value="#{proveedorController.listaProveedores()}" border="2">

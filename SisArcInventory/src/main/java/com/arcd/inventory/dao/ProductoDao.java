@@ -75,6 +75,8 @@ public class ProductoDao {
 		return lproductos;
 	}
 
+	
+	
 	/**
 	 * Filtro de busqueda por productos
 	 * @param filtro
