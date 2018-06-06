@@ -1,6 +1,5 @@
 package com.arcd.inventory.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateless;

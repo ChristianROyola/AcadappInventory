@@ -109,6 +109,37 @@ public class PersonaController
 	}
 	
 	/**
+	 * Contexto del Administrador
+	 * @return
+	 */
+	
+	public String crear2() {
+		if (coincidirContrasenia() == true) {
+			if (validarCedula() == true) {
+				if (validarCorreo() == true) {
+					//personas.setPerfil("USUARIO"); // cambiar por administrador
+					personas.setEstado("A");
+					pdao.guardar(personas);
+					inicializar();
+					init();
+					this.conincidencia = "Grabado exitoso!";
+					return "form-update-admin";
+				} else {
+					this.conincidencia = "El formato del correo es incorrecto";
+					return null;
+				}
+			} else {
+				System.out.println("Cedula incorrecta");
+				this.conincidencia = "La cedula es incorrecta";
+				return null;
+			}
+		} else {
+			this.conincidencia = "Ingrese las mismas contrasenias";
+			return null;
+		}	
+	}
+	
+	/**
 	 * inicilizar una Sesion HTTP y establecimiento de parametros en session,
 	 * FacesContext acceso tanto al contexto de JSF como HTTP
 	 */
@@ -205,7 +236,7 @@ public class PersonaController
 				personas.setContrasenia(pactual);
 				System.out.println("ACTUALIZAR ADMIN :" + personas.getCedula());
 				System.out.println("ELSE IF ADMIN");
-				//pdao.updatePersona(personas);
+				pdao.updatePersona(personas);
 				//return "mainAdmin";
 				return null;
 				
@@ -270,6 +301,12 @@ public class PersonaController
 		Pattern pattern = Pattern.compile(PATTERN_EMAIL);
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
+	}
+	
+	public String eliminar(int id) {
+		pdao.deletePersona(id);
+		System.out.println("Eliminado admin ..:" + personas);
+		return "actualizar";
 	}
 
 	/**

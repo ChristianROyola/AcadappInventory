@@ -1,8 +1,6 @@
 package com.arcd.inventory.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -23,7 +21,6 @@ public class CategoriaController {
 	
 	private Categoria categoria = null;
 	private List<Categoria> lcategorias;
-    private List<Producto> productos = new ArrayList<>();
 	
     private SelectItem[] categoriaSelectItems;
     private String categitem;
@@ -33,7 +30,7 @@ public class CategoriaController {
 	@PostConstruct
 	public void init(){
 		categoria=new Categoria();
-		categoria.addProductos(new Producto());
+		//categoria.addProductos(new Producto());
 		loadCategoria();
 	}
 	
@@ -61,7 +58,7 @@ public class CategoriaController {
 	public void setCategitem(String categitem)
 	{
 		this.categitem = categitem;
-		createCategoriaSelectItems();
+		//createCategoriaSelectItems();
         //Logger.info(String.format("Selected country: %s", categitem));
 	}
 
@@ -111,9 +108,12 @@ public class CategoriaController {
 			
 			if (this.id!=null) 
 			{
+				System.out.println("UPDATEEEE  ------->>>>> "+categoria);	
 				catedao.actualizarCategoria(categoria);
 			} else {
+				System.out.println("INSERTAAAA  ------->>>>> "+categoria);
 				catedao.insetarCategoria(categoria);
+				inicializar();
 			}
 		} catch (Exception e) 
 		{
@@ -122,7 +122,7 @@ public class CategoriaController {
 		}
 		//catedao.guardarCategoria(categoria);
 		
-		inicializar();
+		//inicializar();
 		//loadCategoria();
 		//return null;
 		//return "listadoCategoria";
@@ -141,7 +141,8 @@ public class CategoriaController {
 		categoria.setNombre("");
 		categoria.setDescipcion("");
 	}
-	
+
+	/*
 	private void createCategoriaSelectItems(){
         String[] categorias = catedao.listaitemcategoria();
         if (categorias != null && categorias.length > 0) {
@@ -153,14 +154,14 @@ public class CategoriaController {
         	categitem = "";
         	categoriaSelectItems = new SelectItem[0];
         }
-    }
+    }*/
 	
 	public List<Categoria> getAllDepts() {
-		doList();
+		//doList();
 		return catedao.getCategorias2();
         
     }
-	
+	/*
 	public String doList() {
 		List<Categoria> categorias = catedao.getCategorias();
 		for (Categoria categ : categorias) {

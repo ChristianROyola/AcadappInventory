@@ -12,7 +12,6 @@ import com.arcd.inventory.dao.ProductoDao;
 import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Producto;
 
-
 @ManagedBean
 @SessionScoped
 public class ProductoController 

@@ -1,18 +1,20 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html" template="index-blank.xhtml">
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="index-blank-admin.xhtml">
 
-	<ui:define name="titulo">Categoria Contenidos</ui:define>
+	<ui:define name="titulo">Update Categorias Productos</ui:define>
 	<ui:define name="contenido">
-					<h4 class="card-title">Listado Categorias Productos</h4>
+		<h4 class="card-title">Listado Categorias Productos</h4>
 
 		<h:form>
 			<h:outputText value="No se han registrado categorias"
 				rendered="#{empty  categoriaController.listaCategorias()}"></h:outputText>
-			
+
 			<h:dataTable var="listaCategoria" style="color:black"
-				value="#{categoriaController.listaCategorias()}" border="2" class="table">
+				value="#{categoriaController.listaCategorias()}" border="2"
+				class="table">
 
 				<h:column Style="color: black">
 					<f:facet name="header">Código</f:facet>

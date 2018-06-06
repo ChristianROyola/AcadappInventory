@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -34,8 +35,8 @@ public class Categoria {
 	private String descipcion;
 
 	//bi-directional many-to-one association to Producto
-	@OneToMany(cascade = { CascadeType.ALL}, fetch = FetchType.EAGER)
-	@JoinColumn(name="categoria", referencedColumnName="cat_id")
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name="categoria_id", referencedColumnName="cat_id")
 	private List<Producto> productos;
 	
 	public String getCatid() {
@@ -62,7 +63,6 @@ public class Categoria {
 		this.descipcion = descipcion;
 	}
 
-	
 	public List<Producto> getProductos() {
 		return productos;
 	}

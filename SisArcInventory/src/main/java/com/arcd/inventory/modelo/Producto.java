@@ -11,10 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "InventoryProducto")
@@ -32,9 +31,13 @@ public class Producto
 	@NotBlank(message = "Ingrese la descripción del producto")
 	private String descripcion;
 	
-	@Column(nullable=false, precision=65)
+	@Column(name = "product_preciounit", precision=16, scale=2)
+	@NotNull(message = "Ingrese el precio unitario por favor")
 	private BigDecimal preciounit;
-		
+	
+	@ManyToOne
+	private Categoria categoria;
+	
 	public String getId() {
 		return id;
 	}
@@ -61,6 +64,12 @@ public class Producto
 		this.preciounit = preciounit;
 	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	@Override
     public int hashCode() {
         return 31;
