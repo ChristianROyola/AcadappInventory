@@ -35,7 +35,7 @@
 </h:head>
 
 <h:body class="fix-header fix-sidebar">
-	<ui:composition template="index-blank.xhtml">
+	<ui:composition template="index-blank-admin.xhtml">
 		<ui:define name="titulo">Categorias</ui:define>
 		<ui:define name="contenido">
 			<center>
@@ -62,7 +62,7 @@
 									<h:inputText id="idCategoria"
 										value="#{categoriaController.categoria.catid}"
 										class="form-control" pt:placeholder="Ejm: cat1" />
-									<h:message for="idCategoria" />
+									<h:message for="idCategoria"  errorClass="errorMessage" />
 
 									<h:outputLabel value="Nombre Categoria *" for="nombCategoria" />
 									<h:inputText id="nombCategoria"
@@ -70,7 +70,7 @@
 										class="form-control" pt:placeholder="Ejm:Quimicos" />
 									<h:message for="nombCategoria" />
 
-									<h:outputLabel value="Descripción * " for="catDescripcion" />
+									<h:outputLabel value="Descripción: " for="catDescripcion" />
 									<h:inputTextarea id="catDescripcion"
 										value="#{categoriaController.categoria.descipcion}"
 										class="form-control" requiredMessage="Ingrese Descripcion"

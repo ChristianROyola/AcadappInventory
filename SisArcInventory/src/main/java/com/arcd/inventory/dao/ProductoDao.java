@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.Query;
 
+import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Producto;
 
 
@@ -91,5 +92,9 @@ public class ProductoDao {
 		return producto;
 
 	}
-
+	
+	public Producto leerProduct(String id) {
+		Producto c = em.find(Producto.class, id);
+		return c;
+	}
 }

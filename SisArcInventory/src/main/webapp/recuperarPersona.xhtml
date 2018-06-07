@@ -2,63 +2,65 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:hs="http://xmlns.jcp.org/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	template="index-blank-admin.xhtml">
+	template="index-blank-admin.xhtml"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-	<h:head></h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{personaController.id}"></f:viewParam>
+		<f:viewParam name="id" value="#{personaController.id}" />
 	</f:metadata>
 
-	<ui:define name="titulo">Nomina Personal</ui:define>
+	<ui:define name="titulo">Categoria</ui:define>
+
 	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data" id="formulario">
 
-		<center>
-			<h1>Actualización de Nomina</h1>
+			<h1>Modificar Nomina de Personal</h1>
+			<br />
+			<br />
 
-			<h:form>
-				<h:panelGrid columns="1">
+			<h:panelGrid columns="3">
 
-					<h:outputLabel value="Cedula: " for="cedula" />
-					<h:inputText value="#{personaController.personas.cedula}"
-						id="cedula" class="form-control input-sm" pt:placeholder="Cedula" />
-					<h:message for="cedula" errorStyle="color:red; display:block" />
+				<h:outputLabel value="Codigo:" for="id" />
+				<h:inputText id="id" value="#{personaController.personas.cedula}"
+					class="form-control" />
+				<h:message for="id" />
 
-					<h:outputLabel value="Nombre: " for="nombre" />
-					<h:inputText value="#{personaController.personas.nombre}"
-						id="nombre" class="form-control input-sm" pt:placeholder="Nombre" />
-					<h:message for="nombre" errorStyle="color:red; display:block" />
+				<h:outputLabel value="Nombre:" for="nombrePers" />
+				<h:inputText id="nombrePers"
+					value="#{personaController.personas.nombre}" class="form-control" />
+				<h:message for="nombrePers" />
 
-					<h:outputLabel value="Apellido: " for="apellido" />
-					<h:inputText value="#{personaController.personas.apellido}"
-						id="apellido" class="form-control input-sm"
-						pt:placeholder="Apellido" />
-					<h:message for="apellido" errorStyle="color:red; display:block" />
-					<br />
-					
-					<h:outputLabel value="Correo: " for="correo" />
-					<h:inputText value="#{personaController.personas.correo}"
-						id="correo" class="form-control input-sm"
-						pt:placeholder="usuario@gmail.com" />
-					<h:message for="correo" errorStyle="color:red; display:block" />
-					<br />
+				<h:outputLabel value="Apellido:" for="nombreApellido" />
+				<h:inputText id="nombreApellido"
+					value="#{personaController.personas.apellido}" class="form-control" />
+				<h:message for="nombreApellido" />
+				
+				<h:outputLabel value="Correo:" for="correo" />
+				<h:inputText id="correo"
+					value="#{personaController.personas.correo}" class="form-control" />
+				<h:message for="correo" />
 
-					<h:outputLabel value="Actualizar Contraseña: " for="contrasenia" />
-					<h:inputText value="#{personaController.personas.contrasenia}"
-						id="contrasenia" class="form-control input-sm" />
-					<h:message for="contrasenia" errorStyle="color:red; display:block" />
-					<br />
+				<h:outputLabel value="Perfil:" for="perfil" />
+				<h:inputTextarea id="perfil"
+					value="#{personaController.personas.perfil}"
+					class="form-control" />
+				<h:message for="perfil" />
+				
+				<h:outputLabel value="Contraseña:" for="contr" />
+				<h:inputTextarea id="contr"
+					value="#{personaController.personas.contrasenia}"
+					class="form-control" />
+				<h:message for="contr" />
 
-				</h:panelGrid>
-				<h:commandButton action="#{personaController.modificar()}"
-					value="Actualizar" class="btn btn-success btn-inline">
-				</h:commandButton>
-				<br />
-				<br />
-				<h:commandButton action="actualizar" value="Cancelar"
-					class="btn btn-info btn-inline" />
-			</h:form>
-		</center>
+				<h:outputLabel value="Estado:" for="estado" />
+				<h:inputTextarea id="estado"
+					value="#{personaController.personas.estado}"
+					class="form-control" />
+				<h:message for="estado" />
+				
+				<h:commandButton action="#{personaController.crear2()}"
+					value="Guardar" class="btn btn-primary" />
+			</h:panelGrid>
+		</h:form>
 	</ui:define>
 </ui:composition>

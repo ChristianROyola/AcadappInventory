@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.arcd.inventory.modelo.Persona;
 import com.arcd.inventory.modelo.Proveedores;
 
 
@@ -42,7 +43,29 @@ public class ProveedorDao
 			insertProveedor(p);	
 		}
 	}
+	
+	public void updateproveedores(Proveedores p)
+	{
+		System.out.println("Actualiza datos de proveedor"+ p.getNombre() + " - "+ p.getDireccion());
+		em.merge(p);
+	}
+	
+	/**
+	 *Metodo para eliminar
+	 */
+	public void deleteProveed(int id) {
+		Proveedores p = selectProvee(id);
+		em.remove(p);
+	}
 		
+	/**
+	 *Metodo para buscar
+	 */
+	public Proveedores selectProvee(int id) {
+		Proveedores p = em.find(Proveedores.class, id);
+		return p;
+	}
+	
 	/**
 	 *SQl consulta a la base
 	 */

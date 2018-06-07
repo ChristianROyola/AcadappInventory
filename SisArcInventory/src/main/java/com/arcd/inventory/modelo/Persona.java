@@ -21,25 +21,21 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Persona 
 {
 	@Id
-	@Column(name = "pers_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int id;
-
-	@Column(name = "pers_nombre")
-	@NotBlank(message = "Ingrese el nombre")
-	private String nombre;
-
-	@Column(name = "pers_apellido")
-	@NotBlank(message = "Ingrese el apellido")
-	private String apellido;
-
 	@Column(name = "pers_cedula")
 	@Pattern(regexp = "[\\s]*[0-9]*[1-9]+",message="Ingrese unicamente numeros")
 	@NotBlank(message = "Por favor ingrese la cedula")
 	private String cedula;
 
+	@Column(name = "pers_nombre")
+	@NotBlank(message = "Ingrese un nombre valido")
+	private String nombre;
+
+	@Column(name = "pers_apellido")
+	@NotBlank(message = "Ingrese un apellido valido")
+	private String apellido;
+
 	@Column(name = "pers_correo")
-	@NotBlank(message = "Ingrese el correo") 
+	@NotBlank(message = "Ingrese un correo valido") 
 	private String correo;
 
 	@Column(name = "pers_perfil")
@@ -51,15 +47,7 @@ public class Persona
 
 	@Column(name = "pers_estado")
 	private String estado;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -118,9 +106,8 @@ public class Persona
 
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
-				+ ", correo=" + correo + ", perfil=" + perfil + ", contrasenia=" + contrasenia + ", estado=" + estado
-				+ "]";
+		return "Persona [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo
+				+ ", perfil=" + perfil + ", contrasenia=" + contrasenia + ", estado=" + estado + "]";
 	}
 
 }

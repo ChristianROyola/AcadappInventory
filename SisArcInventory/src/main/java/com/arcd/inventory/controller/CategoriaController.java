@@ -87,12 +87,9 @@ public class CategoriaController {
 		return lcategorias;
 	}
 	
-	public String loadCategoriaEditar(String id){
-		
+	public void loadCategoriaEditar(String id){
 		System.out.println("Cargando datos de categoria a editar" + id);
 		categoria = catedao.leerCategoria(id);
-		//return "listadoCategoriaAcciones";	
-		return null;
 	}
 	
 	public String eliminaCategoria(String id){

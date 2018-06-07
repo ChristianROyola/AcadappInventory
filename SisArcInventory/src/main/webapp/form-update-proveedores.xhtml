@@ -5,57 +5,53 @@
 	template="index-blank-admin.xhtml">
 	<h:head>
 	</h:head>
-	<ui:define name="titulo">Nomina Personal</ui:define>
+	<ui:define name="titulo">Nomina Proveedores</ui:define>
 	<ui:define name="contenido">
 
 		<h:form>
 			<h:outputText value="El registro no contiene datos"
-				rendered="#{empty  personaController.lpersonas}"></h:outputText>
-			<h:dataTable var="vpersonas" class="table table-hover"
-				style="color:black" value="#{personaController.listaPersonas()}"
+				rendered="#{empty  proveedorController.lproveedores}"></h:outputText>
+			<h:dataTable var="vproveed" class="table table-hover"
+				style="color:black" value="#{proveedorController.listaProveedores()}"
 				border="1">
 
 				<h:column Style="color: black">
-					<f:facet name="header">Cedula:</f:facet>
-						#{vpersonas.cedula}
-				</h:column>
-
-				<h:column Style="color: black">
 					<f:facet name="header">Nombre:</f:facet>
-				#{vpersonas.nombre}
+				#{vproveed.nombre}
 				</h:column>
 
 				<h:column Style="color: black">
-					<f:facet name="header">Apellido</f:facet>
-				#{vpersonas.apellido}
+					<f:facet name="header">Correo:</f:facet>
+				#{vproveed.correo}
 				</h:column>
 
 				<h:column Style="color: black">
-					<f:facet name="header">Correo</f:facet>
-				#{vpersonas.correo}
+					<f:facet name="header">Dirección:</f:facet>
+				#{vproveed.direccion}
 				</h:column>
 
 				<h:column Style="color: black">
-					<f:facet name="header">Perfil</f:facet>
-				#{vpersonas.perfil}
+					<f:facet name="header">Teléfono:</f:facet>
+				#{vproveed.telefono}
 				</h:column>
 
 				<h:column Style="color: black">
-					<f:facet name="header">Contraseña</f:facet>
-				******
+					<f:facet name="header">Fecha Registro:</f:facet>
+				#{vproveed.fechregistro}
 				</h:column>
-
+				
 				<h:column Style="color: black">
-					<f:facet name="header">Estado</f:facet>
-				#{vpersonas.estado}
+					<f:facet name="header">Comentario:</f:facet>
+				#{vproveed.descripcion}
 				</h:column>
-
+				
 				<h:column Style="color: black">
 					<center>
 						<f:facet name="header" Style="color: black">Editar</f:facet>
 					</center>
 					<center>
-						<a href="recuperarPersona.xhtml?id=#{vpersonas.cedula}"
+					
+						<a href="recuperarProv.xhtml?id=#{vproveed.id}"
 							class="btn btn-info btn-md"> Editar </a>
 					</center>
 				</h:column>
@@ -66,22 +62,12 @@
 					</center>
 					<center>
 						<h:commandButton value="Eliminar" class="btn btn-danger btn-md"
-							action="#{personaController.eliminar(vpersonas.id)}"></h:commandButton>
+						action="#{proveedorController.eliminar(vproveed.id)}"></h:commandButton>
 					</center>
 				</h:column>
 
-<!-- 				<h:column Style="color: black">
-					<center>
-						<f:facet name="header" Style="color: black">Crear</f:facet>
-					</center>
-					<center>
-						<a href="recuperarPersona.xhtml?id=#{vpersonas.id}"
-							class="btn btn-info btn-md"> Crear </a>
-					</center>
-				</h:column>
- -->
 			</h:dataTable>
-			<h:commandButton action="page-register-adma" value="Nuevo Usuario"
+			<h:commandButton action="page-register-prov" value="Nuevo Proveedor"
 				class="btn btn-primary" />
 		</h:form>
 	</ui:define>

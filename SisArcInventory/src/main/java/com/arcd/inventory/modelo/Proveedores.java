@@ -23,8 +23,8 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Proveedores 
 {
 	@Id
-	@Column(name = "prov_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "prov_razon_social")
+	@NotBlank(message = "Ingrese la razón social de Proveedor (Ruc) ")
 	private int id;
 	
 	@Column(name = "prov_nombre")

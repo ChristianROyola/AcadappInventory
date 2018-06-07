@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:hs="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="index-blank-admin.xhtml">
+
+	<h:head></h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{proveedorController.idrecuprerar}"></f:viewParam>
+	</f:metadata>
+
+	<ui:define name="titulo">Nomina Proveedores</ui:define>
+	<ui:define name="contenido">
+
+		<center>
+			<h1>Actualización de Nomina Provedores</h1>
+
+			<h:form>
+				<h:panelGrid columns="1">
+
+					<h:outputLabel value="Nombre: " for="nombre" />
+					<h:inputText value="#{proveedorController.proveedores.nombre}"
+						id="nombre" class="form-control input-sm" pt:placeholder="Nombre" />
+					<h:message for="nombre" errorStyle="color:red; display:block" />
+
+					<h:outputLabel value="Dirección: " for="direcc" />
+					<h:inputText value="#{proveedorController.proveedores.direccion}"
+						id="direcc" class="form-control input-sm" pt:placeholder="Dirección" />
+					<h:message for="direcc" errorStyle="color:red; display:block" />
+
+					<h:outputLabel value="Correo: " for="correo" />
+					<h:inputText value="#{proveedorController.proveedores.correo}"
+						id="correo" class="form-control input-sm"
+						pt:placeholder="Correo" />
+					<h:message for="correo" errorStyle="color:red; display:block" />
+					<br />
+					
+					<h:outputLabel value="Telefono: " for="telefono" />
+					<h:inputText value="#{proveedorController.proveedores.telefono}"
+						id="telefono" class="form-control input-sm"
+						pt:placeholder="Telefono" />
+					<h:message for="telefono" errorStyle="color:red; display:block" />
+					<br />
+
+					<h:outputLabel value="Fecha registro: " for="fechareg" />
+					<h:inputText value="#{proveedorController.proveedores.fechregistro}"
+						id="fechareg" class="form-control input-sm" />
+					<h:message for="fechareg" errorStyle="color:red; display:block" />
+					<br />
+					
+					<h:outputLabel value="Comentario: " for="coment" />
+					<h:inputText value="#{proveedorController.proveedores.descripcion}"
+						id="coment" class="form-control input-sm" />
+					<h:message for="coment" errorStyle="color:red; display:block" />
+					<br />
+
+				</h:panelGrid>
+				<h:commandButton action="#{proveedorController.modificar()}"
+					value="Actualizar" class="btn btn-success btn-inline">
+				</h:commandButton>
+				<br />
+				<br />
+				<h:commandButton action="actualizar" value="Cancelar"
+					class="btn btn-info btn-inline" />
+			</h:form>
+		</center>
+	</ui:define>
+</ui:composition>

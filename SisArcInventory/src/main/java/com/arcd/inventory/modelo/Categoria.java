@@ -24,10 +24,11 @@ public class Categoria {
 
 	@Id
 	@Column(name = "cat_id")
+	@NotBlank(message = "Ingrese el id de la categoria")
 	private String catid;
 
 	@Column(name = "cat_nombre")
-	@NotBlank(message = "Ingrese la categoria")
+	@NotBlank(message = "Ingrese el nombre de la categoria")
 	@Size(min = 3, max = 30)
 	private String nombre;
 

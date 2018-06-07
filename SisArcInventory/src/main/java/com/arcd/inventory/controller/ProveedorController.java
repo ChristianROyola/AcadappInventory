@@ -72,7 +72,7 @@ public class ProveedorController {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		facesContext.addMessage(null,
-				
+
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Fecha seleccionada", format.format(event.getObject())));
 	}
 
@@ -104,6 +104,24 @@ public class ProveedorController {
 		proveedores.setDireccion("");
 		proveedores.setTelefono("");
 	}
+
+	/**
+	 * Modificación de los objetos de tipo Persona(USUARIO/ADMIN)
+	 */
+
+	public String modificar() {
+		System.out.println("ACTUALIZAR PROVEE :" + proveedores.getNombre());
+		pdao.updateproveedores(proveedores);
+		return "form-update-proveedores";
+		//return null;
+	}
+	
+	public String eliminar(int id) {
+		pdao.deleteProveed(id);
+		System.out.println("Eliminado admin ..:" + proveedores);
+		return "actualizar";
+	}
+
 
 	/**
 	 * Metodo listado, devuelve un objeto Listado de tipo Persona(Devuelve todas las
@@ -158,7 +176,6 @@ public class ProveedorController {
 		return idrecuprerar;
 	}
 
-	
 	public Date getFecha() {
 		return fecha;
 	}
@@ -174,6 +191,4 @@ public class ProveedorController {
 				+ "]";
 	}
 
-
-	
 }

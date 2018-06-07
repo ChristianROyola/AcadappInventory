@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="index-blank-admin.xhtml"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{productoController.id}" />
+	</f:metadata>
+
+	<ui:define name="titulo">Producto</ui:define>
+
+	<ui:define name="contenido">
+		<h:form enctype="multipart/form-data" id="formulario">
+
+			<h1>Modificar Producto</h1>
+			<br />
+			<br />
+
+			<h:panelGrid columns="3">
+
+				<h:outputLabel value="Codigo:" for="id" />
+				<h:inputText id="id" value="#{productoController.producto.id}"
+					class="form-control" />
+				<h:message for="id" />
+
+				<h:outputLabel value="Nombre Prodcuto:" for="nombreProduct" />
+				<h:inputText id="nombreProduct"
+					value="#{productoController.producto.nombre}" class="form-control" />
+				<h:message for="nombreProduct" />
+
+				<h:outputLabel value="Descripcion:" for="descProduct" />
+				<h:inputTextarea id="descProduct"
+					value="#{productoController.producto.descripcion}"
+					class="form-control" />
+				<h:message for="descProduct" />
+
+				<h:outputLabel value="Précio Unitario" for="prcProduct" />
+				<h:inputTextarea id="prcProduct"
+					value="#{productoController.producto.preciounit}"
+					class="form-control" />
+				<h:message for="prcProduct" />
+
+				<h:outputLabel value="Cod Categoria" for="codCate" />
+				<h:inputTextarea id="codCate"
+					value="#{productoController.c.catid}"
+					class="form-control" />
+				<h:message for="codCate" />
+
+				<h:commandButton action="#{categoriaController.guardar()}"
+					value="Guardar" class="btn btn-primary" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

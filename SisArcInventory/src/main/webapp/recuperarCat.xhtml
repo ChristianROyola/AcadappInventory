@@ -1,11 +1,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html" template="pages-blank.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html" template="index-blank-admin.xhtml"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 	<f:metadata>
-		<f:viewParam name="id" value="#{contenidoController.id}" />
+		<f:viewParam name="id" value="#{categoriaController.id}" />
 	</f:metadata>
 
 	<ui:define name="titulo">Categoria</ui:define>
@@ -20,7 +20,7 @@
 			<h:panelGrid columns="3">
 
 				<h:outputLabel value="Codigo:" for="id" />
-				<h:inputText id="id" value="#{categoriaController.categoria.id}"
+				<h:inputText id="id" value="#{categoriaController.categoria.catid}"
 					class="form-control" />
 				<h:message for="id" />
 
@@ -37,7 +37,8 @@
 				<h:message for="descCateg" />
 
 				<h:commandButton action="#{categoriaController.guardar()}"
-					value="Guardar" />
+					value="Guardar" 
+					class="btn btn-primary" />
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

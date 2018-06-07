@@ -4,39 +4,49 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="index-blank-admin.xhtml">
 
-	<ui:define name="titulo">Update Categorias Productos</ui:define>
+	<ui:define name="titulo">Update Productos</ui:define>
 	<ui:define name="contenido">
-		<h4 class="card-title">Listado Categorias Productos</h4>
+		<h4 class="card-title">Listado Productos Inventario</h4>
 
 		<h:form>
-			<h:outputText value="No se han registrado categorias"
-				rendered="#{empty  categoriaController.listaCategorias()}"></h:outputText>
+			<h:outputText value="No se han registrado productos aun"
+				rendered="#{empty  productoController.listaProductos()}"></h:outputText>
 
-			<h:dataTable var="listaCategoria" style="color:black"
-				value="#{categoriaController.listaCategorias()}" border="2"
+			<h:dataTable var="listaProductos" style="color:black"
+				value="#{productoController.listaProductos()}" border="2"
 				class="table">
 
 				<h:column Style="color: black">
 					<f:facet name="header">Código</f:facet>
-					#{listaCategoria.catid}
+					#{listaProductos.id}
 				</h:column>
 
 				<h:column Style="color: black">
 					<f:facet name="header">Nombre</f:facet>
-					#{listaCategoria.nombre}
+					#{listaProductos.nombre}
 				</h:column>
 
 				<h:column Style="color: black">
 					<f:facet name="header">Descripción</f:facet>
-					#{listaCategoria.descipcion}
+					#{listaProductos.descripcion}
+				</h:column>
+				
+				<h:column Style="color: black">
+					<f:facet name="header">Precio Unitario</f:facet>
+					#{listaProductos.preciounit}
 				</h:column>
 
+				<h:column Style="color: black">
+					<f:facet name="header">Id Categoria Producto</f:facet>
+					#{listaProductos.categoria.catid}
+				</h:column>
+				
 				<h:column Style="color: black">
 					<center>
 						<f:facet name="header" Style="color: black">Editar</f:facet>
 					</center>
 					<center>
-						<a href="recuperarCat.xhtml?id=#{listaCategoria.catid}"
+						<a href="recuperarProduct.xhtml?id=#{listaProductos.id}"
 							class="btn btn-info btn-md"> Editar </a>
 					</center>
 				</h:column>
@@ -47,12 +57,12 @@
 					</center>
 					<center>
 						<h:commandButton value="Eliminar" class="btn btn-danger btn-md"
-							 action="#{categoriaController.eliminaCategoria(listaCategoria.catid)}"></h:commandButton>
+						     action="#{productoController.eliminar(listaProductos.id)}"></h:commandButton>
 					</center>
 				</h:column>
 
 			</h:dataTable>
-			<h:commandButton action="page-register-cat" value="Crear nueva Categoria"
+			<h:commandButton action="page-register-cat" value="Registrar nuevo Producto"
 			class="btn btn-primary" />
 
 		</h:form>

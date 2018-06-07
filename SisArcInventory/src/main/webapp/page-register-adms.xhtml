@@ -35,7 +35,7 @@
 </head>
 
 <h:body class="fix-header fix-sidebar">
-	<ui:composition template="index-blank.xhtml">
+	<ui:composition template="index-blank-admin.xhtml">
 		<ui:define name="titulo">Proveedores</ui:define>
 		<ui:define name="contenido">
 			<center>
@@ -56,6 +56,10 @@
 							<h6 class="card-subtitle">Verifique y complete la
 								información</h6>
 							<h:form>
+							
+						    <h:messages styleClass="errorMessage"  style="color:red" /> <!-- Global messages -->
+							
+							<br />
 									<div class="form-group">
 										<label>Cédula</label>
 										<h:inputText class="form-control input-sm"
@@ -107,7 +111,8 @@
 										action="#{personaController.crear()}"
 										class="btn btn-success btn-inline"/>
 									
-								</h:form>
+									   	
+									</h:form>
 						</div>
 					</div>
 				</div>

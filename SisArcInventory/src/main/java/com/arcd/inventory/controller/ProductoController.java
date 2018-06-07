@@ -35,6 +35,8 @@ public class ProductoController
 	
 	private String selectedDept;
 	
+	private String id;
+	
 	@PostConstruct
 	public void init() 
 	{
@@ -100,7 +102,24 @@ public class ProductoController
 		producto.setDescripcion("");
 		producto.setPreciounit(null);
 	}
+		
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) 
+	{
+		this.id = id;
+		loadProductedit(id);//parametros
+		
+	}
 	
+	public void loadProductedit(String id)
+	{
+		System.out.println("Cargando datos de Producto a editar" + id);
+		producto = productodao.leerProduct(id);
+		//return "listadoCategoriaAcciones";	
+	}
 
 	public CategoriaDao getCatedao() {
 		return catedao;

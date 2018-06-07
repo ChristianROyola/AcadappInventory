@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Persona;
 
 @Stateless
@@ -26,14 +27,14 @@ public class PersonaDao
 	 *Metodo para Actualizar
 	 */
 	public void updatePersona(Persona p) {
-		System.out.println("Updating..."+p.getId()+p.getCorreo()+p.getContrasenia());
+		System.out.println("Updating..."+p.getCedula()+p.getCorreo()+p.getContrasenia());
 		em.merge(p);
 	}
 	
 	/**
 	 *Metodo para buscar
 	 */
-	public Persona selectPersona(int id) {
+	public Persona selectPersona(String id) {
 		Persona p = em.find(Persona.class, id);
 		return p;
 	}
@@ -41,7 +42,7 @@ public class PersonaDao
 	/**
 	 *Metodo para eliminar
 	 */
-	public void deletePersona(int id) {
+	public void deletePersona(String id) {
 		Persona p = selectPersona(id);
 		em.remove(p);
 	}
@@ -58,8 +59,8 @@ public class PersonaDao
 	}
 	
 	public void guardar (Persona p) {
-		Persona aux = selectPersona(p.getId());
-		System.out.println("ID GUARDAR:" +p.getId());
+		Persona aux = selectPersona(p.getCedula());
+		System.out.println("ID GUARDAR:" +p.getCedula());
 		if(aux!=null) {
 			updatePersona(p);
 		}else {
@@ -95,4 +96,8 @@ public class PersonaDao
 		return personas;
 	}
 	
+	public Persona leerPersona(String id) {
+		Persona c = em.find(Persona.class, id);
+		return c;
+	}
 }

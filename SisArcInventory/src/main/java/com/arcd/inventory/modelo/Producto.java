@@ -35,8 +35,7 @@ public class Producto
 	@NotNull(message = "Ingrese el precio unitario por favor")
 	private BigDecimal preciounit;
 	
-	@ManyToOne
-	private Categoria categoria;
+	//private Categoria categoria;
 	
 	public String getId() {
 		return id;
@@ -64,12 +63,12 @@ public class Producto
 		this.preciounit = preciounit;
 	}
 
-	public Categoria getCategoria() {
+/*	public Categoria getCategoria() {
 		return categoria;
 	}
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
+	}*/
 	@Override
     public int hashCode() {
         return 31;

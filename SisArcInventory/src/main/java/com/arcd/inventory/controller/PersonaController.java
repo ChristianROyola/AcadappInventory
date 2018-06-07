@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -14,6 +15,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.primefaces.context.RequestContext;
 
 import com.arcd.inventory.dao.PersonaDao;
 import com.arcd.inventory.modelo.Persona;
@@ -31,7 +33,8 @@ public class PersonaController
 
 	private Persona personas = null;
 
-	private int id;
+	private String id;
+	
 	private String pactual;
 	private int idEditUser;
 
@@ -125,7 +128,9 @@ public class PersonaController
 					this.conincidencia = "Grabado exitoso!";
 					return "form-update-admin";
 				} else {
-					this.conincidencia = "El formato del correo es incorrecto";
+					//this.conincidencia = "El formato del correo es incorrecto";
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El formato del correo es incorrecto"));
+
 					return null;
 				}
 			} else {
@@ -168,7 +173,7 @@ public class PersonaController
 					e.printStackTrace();
 				}
 			} else if (pdao.login(personas.getCorreo(), personas.getContrasenia()).get(0).getPerfil()
-					.equals("ADMIN-SUPER")) {
+					.equals("ADMIN")) {
 				// FacesContext contexAS= FacesContext.getCurrentInstance();
 				try {
 					contex.getExternalContext().redirect("index.xhtml");
@@ -288,6 +293,8 @@ public class PersonaController
 		if (res == Integer.parseInt(ced.substring(9, 10))) {
 			resultado = true;
 		} else {
+			//RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "Datos Invalidos", "Ingrese una cedula correcta"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ingrese una cedula correcta"));
 			resultado = false;
 		}
 		return resultado;
@@ -303,7 +310,7 @@ public class PersonaController
 		return matcher.matches();
 	}
 	
-	public String eliminar(int id) {
+	public String eliminar(String id) {
 		pdao.deletePersona(id);
 		System.out.println("Eliminado admin ..:" + personas);
 		return "actualizar";
@@ -326,12 +333,22 @@ public class PersonaController
 		this.personas = personas;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
+		System.out.println("SETTT ID ---> "+id);
 		this.id = id;
+		loadPersonaEditar(id);//parametros
+	}
+	
+	public String loadPersonaEditar(String id){
+		
+		System.out.println("Cargando datos de persona a editar" + id);
+		personas = pdao.leerPersona(id);
+		//return "listadoCategoriaAcciones";	
+		return null;
 	}
 
 	public String getPactual() {
