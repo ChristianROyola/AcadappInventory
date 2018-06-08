@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Persona;
 
 @Stateless
@@ -76,6 +75,15 @@ public class PersonaDao
 		List<Persona> personas = query.getResultList();
 		return personas;
 	}
+	
+	public List<Persona> loginadmin(String user, String pass) {
+		System.out.println("ADMINISTRADOR: "+user+", Pass: "+pass);
+		String sql = "Select p from Persona p WHERE p.correo = '"+user+"' AND p.contrasenia='"+pass+"' AND p.perfil= 'ADMINISTRADOR'";
+		TypedQuery<Persona> query = em.createQuery(sql, Persona.class);
+		List<Persona> personas = query.getResultList();
+		return personas;
+	}
+	
 	
 	public List<Persona> verificaCorreo(String user)
 	{

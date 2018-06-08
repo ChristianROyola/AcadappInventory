@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Creacion de la tabla Proveedores
@@ -24,7 +25,7 @@ public class Proveedores
 {
 	@Id
 	@Column(name = "prov_razon_social")
-	@NotBlank(message = "Ingrese la razón social de Proveedor (Ruc) ")
+	@NotEmpty(message = "Ingrese la razón social de Proveedor (Ruc) ")
 	private int id;
 	
 	@Column(name = "prov_nombre")
