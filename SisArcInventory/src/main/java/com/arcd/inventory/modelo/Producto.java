@@ -21,6 +21,7 @@ public class Producto
 {
 	@Id
 	@Column(name = "product_id")
+	@NotBlank(message = "Ingrese el id del producto")
 	private String id;
 	
 	@Column(name = "product_nombre")
@@ -35,7 +36,9 @@ public class Producto
 	@NotNull(message = "Ingrese el precio unitario por favor")
 	private BigDecimal preciounit;
 	
-	//private Categoria categoria;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="cat_id",nullable = false, insertable =true)
+	private Categoria cate;
 	
 	public String getId() {
 		return id;
@@ -62,18 +65,13 @@ public class Producto
 	public void setPreciounit(BigDecimal preciounit) {
 		this.preciounit = preciounit;
 	}
-
-/*	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}*/
-	@Override
-    public int hashCode() {
-        return 31;
-    }
 	
+	public Categoria getCate() {
+		return cate;
+	}
+	public void setCate(Categoria cate) {
+		this.cate = cate;
+	}
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + preciounit

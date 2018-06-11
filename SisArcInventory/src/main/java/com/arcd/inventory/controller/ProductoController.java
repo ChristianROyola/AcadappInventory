@@ -97,7 +97,7 @@ public class ProductoController
 	
 	public void inicializar() 
 	{
-		producto.setId("");
+		//producto.setId("");
 		producto.setNombre("");
 		producto.setDescripcion("");
 		producto.setPreciounit(null);

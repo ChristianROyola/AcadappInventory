@@ -58,12 +58,7 @@
 							<h:form role="form" id="formregistro">
 								<h:panelGrid columns="3">
 
-									<h:outputLabel value="ID Categoria *" for="idCategoria" />
-									<h:inputText id="idCategoria"
-										value="#{categoriaController.categoria.catid}"
-										class="form-control" pt:placeholder="Ejm: cat1" />
-									<h:message for="idCategoria"  errorClass="errorMessage" />
-
+									
 									<h:outputLabel value="Nombre Categoria *" for="nombCategoria" />
 									<h:inputText id="nombCategoria"
 										value="#{categoriaController.categoria.nombre}"
@@ -85,11 +80,12 @@
 								<h:dataTable var="vproveedor" style="color:black"
 									class="table table-hover"
 									value="#{categoriaController.categoria.productos}" border="2">
-
+									
 									<h:column Style="color: black">
-										<f:facet name="header">Id * </f:facet>
+										<f:facet name="header">Id *</f:facet>
 										<h:inputText value="#{vproveedor.id}" />
 									</h:column>
+								
 
 									<h:column Style="color: black">
 										<f:facet name="header">Nombre *</f:facet>
@@ -109,7 +105,6 @@
 
 
 								</h:dataTable>
-								
 								
 								 * Seleccione Categoria Contenido: 
             					<h:selectOneMenu id="categoriaList"

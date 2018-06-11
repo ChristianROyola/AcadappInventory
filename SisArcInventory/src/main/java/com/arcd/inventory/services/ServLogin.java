@@ -82,7 +82,6 @@ public class ServLogin {
 			temp.setCorreo(ad.getCorreo());
 			temp.setEstado(ad.getEstado());
 			temp.setPerfil(ad.getPerfil());
-
 			ads.add(temp);
 		}
 		return ads;

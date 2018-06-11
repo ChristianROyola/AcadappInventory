@@ -24,8 +24,8 @@ public class Categoria {
 
 	@Id
 	@Column(name = "cat_id")
-	@NotBlank(message = "Ingrese el id de la categoria")
-	private String catid;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int catid;
 
 	@Column(name = "cat_nombre")
 	@NotBlank(message = "Ingrese el nombre de la categoria")
@@ -36,15 +36,15 @@ public class Categoria {
 	private String descipcion;
 
 	//bi-directional many-to-one association to Producto
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name="categoria_id", referencedColumnName="cat_id")
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "cate")
+	//@JoinColumn(name="categoria_id", referencedColumnName="cat_id")
 	private List<Producto> productos;
 	
-	public String getCatid() {
+	public int getCatid() {
 		return catid;
 	}
 
-	public void setCatid(String catid) {
+	public void setCatid(int catid) {
 		this.catid = catid;
 	}
 
@@ -76,7 +76,7 @@ public class Categoria {
 	{
 		if(productos==null)
 			productos = new ArrayList<>();
-		productos.add(products);
+			productos.add(products);
 	}
 
 	@Override

@@ -41,12 +41,12 @@ public class CategoriaDao {
 		em.merge(c);
 	}
 
-	public Categoria leerCategoria(String id) {
+	public Categoria leerCategoria(int id) {
 		Categoria c = em.find(Categoria.class, id);
 		return c;
 	}
 
-	public void eliminarCategoria(String id) {
+	public void eliminarCategoria(int id) {
 		Categoria c = leerCategoria(id);
 		em.remove(c);
 	}

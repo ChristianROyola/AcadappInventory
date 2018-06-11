@@ -8,6 +8,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.arcd.inventory.dao.CategoriaDao;
 import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Producto;
@@ -25,7 +27,7 @@ public class CategoriaController {
     private SelectItem[] categoriaSelectItems;
     private String categitem;
     
-    private String id;
+    private int id;
 		
 	@PostConstruct
 	public void init(){
@@ -34,11 +36,11 @@ public class CategoriaController {
 		loadCategoria();
 	}
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 		loadCategoriaEditar(id);//parametros
 	}
@@ -87,12 +89,12 @@ public class CategoriaController {
 		return lcategorias;
 	}
 	
-	public void loadCategoriaEditar(String id){
+	public void loadCategoriaEditar(int id){
 		System.out.println("Cargando datos de categoria a editar" + id);
 		categoria = catedao.leerCategoria(id);
 	}
 	
-	public String eliminaCategoria(String id){
+	public String eliminaCategoria(int id){
 		catedao.eliminarCategoria(id);
 		//return "listadoCategoriaAcciones";
 		return null;
@@ -103,10 +105,11 @@ public class CategoriaController {
 		System.out.println("RECUPEDANDO ------->>>>> "+categoria);	
 		try {
 			
-			if (this.id!=null) 
+			if (this.id!=-1) 
 			{
 				System.out.println("UPDATEEEE  ------->>>>> "+categoria);	
 				catedao.actualizarCategoria(categoria);
+				System.out.println(categoria.getCatid());
 			} else {
 				System.out.println("INSERTAAAA  ------->>>>> "+categoria);
 				catedao.insetarCategoria(categoria);
@@ -134,7 +137,7 @@ public class CategoriaController {
 	
 	public void inicializar() 
 	{
-		categoria.setCatid("");
+		//categoria.setCatid(0);
 		categoria.setNombre("");
 		categoria.setDescipcion("");
 	}
