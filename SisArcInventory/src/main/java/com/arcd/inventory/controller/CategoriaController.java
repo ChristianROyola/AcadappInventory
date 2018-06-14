@@ -1,5 +1,6 @@
 package com.arcd.inventory.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -25,10 +26,11 @@ public class CategoriaController {
 	private List<Categoria> lcategorias;
 	
     private SelectItem[] categoriaSelectItems;
-    private String categitem;
     
-    private int id;
+    
+    private String id;
 		
+    
 	@PostConstruct
 	public void init(){
 		categoria=new Categoria();
@@ -36,11 +38,11 @@ public class CategoriaController {
 		loadCategoria();
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 		loadCategoriaEditar(id);//parametros
 	}
@@ -51,17 +53,6 @@ public class CategoriaController {
 
 	public void setCategoriaSelectItems(SelectItem[] categoriaSelectItems) {
 		this.categoriaSelectItems = categoriaSelectItems;
-	}
-
-	public String getCategitem() {
-		return categitem;
-	}
-
-	public void setCategitem(String categitem)
-	{
-		this.categitem = categitem;
-		//createCategoriaSelectItems();
-        //Logger.info(String.format("Selected country: %s", categitem));
 	}
 
 	public Categoria getCategoria() {
@@ -89,12 +80,12 @@ public class CategoriaController {
 		return lcategorias;
 	}
 	
-	public void loadCategoriaEditar(int id){
+	public void loadCategoriaEditar(String id){
 		System.out.println("Cargando datos de categoria a editar" + id);
 		categoria = catedao.leerCategoria(id);
 	}
 	
-	public String eliminaCategoria(int id){
+	public String eliminaCategoria(String id){
 		catedao.eliminarCategoria(id);
 		//return "listadoCategoriaAcciones";
 		return null;
@@ -105,7 +96,7 @@ public class CategoriaController {
 		System.out.println("RECUPEDANDO ------->>>>> "+categoria);	
 		try {
 			
-			if (this.id!=-1) 
+			if (this.id!=null) 
 			{
 				System.out.println("UPDATEEEE  ------->>>>> "+categoria);	
 				catedao.actualizarCategoria(categoria);
@@ -161,26 +152,15 @@ public class CategoriaController {
 		return catedao.getCategorias2();
         
     }
-	/*
-	public String doList() {
-		List<Categoria> categorias = catedao.getCategorias();
-		for (Categoria categ : categorias) {
-			System.out.println(categ.toString());
+
+	public List<SelectItem> getAllCategorias()
+	{
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		List<Categoria> categoryList = catedao.getCategoriaslist();
+		for (Categoria category : categoryList)
+		{
+			items.add(new SelectItem(category.getCatid(),category.getNombre()));
 		}
-		return null;
+		return items;
 	}
-	
-	/*
-	public Producto addProducto(Producto producto) {
-		productos.add(producto);
-		producto.setCategoria(new Categoria());
-		return producto;
-	}
-	
-	public Producto removeProducto(Producto producto) {
-		productos.remove(producto);
-		producto.setCategoria(null);
-		return producto;
-	}
-	*/
 }

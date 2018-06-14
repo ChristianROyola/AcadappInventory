@@ -37,7 +37,7 @@ public class ProveedorController {
 	private ProveedorDao pdao;
 
 	private Proveedores proveedores;
-
+	
 	@PostConstruct
 	public void init() {
 		proveedores = new Proveedores();
@@ -59,6 +59,7 @@ public class ProveedorController {
 	public void crear() {
 		if (validarCorreo() == true) {
 			proveedores.setFechregistro(fecha);
+			System.out.println("------------------------ Fecha registro" + fecha);
 			pdao.guardar(proveedores);
 			inicializar();
 			init();
@@ -68,18 +69,18 @@ public class ProveedorController {
 		}
 	}
 
-	public void cambioFecha(SelectEvent event) {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		facesContext.addMessage(null,
-
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Fecha seleccionada", format.format(event.getObject())));
+	public void onDateSelect(SelectEvent event) {
+	    FacesContext facesContext = FacesContext.getCurrentInstance();
+	    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+	    facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
 	}
 
 	public void click() {
 		PrimeFaces.current().ajax().update("form:display");
 		PrimeFaces.current().executeScript("PF('dlg').show()");
 	}
+
+
 
 	/**
 	 * Metodo para la validacion de un correo electronico
@@ -113,15 +114,14 @@ public class ProveedorController {
 		System.out.println("ACTUALIZAR PROVEE :" + proveedores.getNombre());
 		pdao.updateproveedores(proveedores);
 		return "form-update-proveedores";
-		//return null;
+		// return null;
 	}
-	
+
 	public String eliminar(int id) {
 		pdao.deleteProveed(id);
 		System.out.println("Eliminado admin ..:" + proveedores);
 		return "actualizar";
 	}
-
 
 	/**
 	 * Metodo listado, devuelve un objeto Listado de tipo Persona(Devuelve todas las

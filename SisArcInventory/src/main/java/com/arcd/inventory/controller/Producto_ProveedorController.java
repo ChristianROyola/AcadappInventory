@@ -4,9 +4,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.arcd.inventory.dao.Producto_ProveedorDao;
 import com.arcd.inventory.modelo.Product_Proveedor;
+import com.arcd.inventory.modelo.Producto;
 
 @ManagedBean
 @SessionScoped
@@ -47,4 +50,19 @@ public class Producto_ProveedorController {
 		this.prodv = prodv;
 	}
 
+	public Producto_ProveedorDao getProdveedao() {
+		return prodveedao;
+	}
+
+	public void setProdveedao(Producto_ProveedorDao prodveedao) {
+		this.prodveedao = prodveedao;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}	
 }

@@ -1,15 +1,16 @@
 package com.arcd.inventory.modelo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -35,10 +36,15 @@ public class Producto
 	@Column(name = "product_preciounit", precision=16, scale=2)
 	@NotNull(message = "Ingrese el precio unitario por favor")
 	private BigDecimal preciounit;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="cat_id",nullable = false, insertable =true)
+	 
+	@ManyToOne
+	@JoinColumn(name="cate_id")
+	//@ManyToOne
 	private Categoria cate;
+	
+	//bi-directional one-to-many association to Producto
+	@OneToMany(mappedBy="product", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private List<Product_Proveedor> prod_provee;
 	
 	public String getId() {
 		return id;
@@ -69,13 +75,23 @@ public class Producto
 	public Categoria getCate() {
 		return cate;
 	}
+	
 	public void setCate(Categoria cate) {
 		this.cate = cate;
 	}
+	
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + preciounit
 				+ "]";
 	}
+	public List<Product_Proveedor> getProd_provee() {
+		return prod_provee;
+	}
+	public void setProd_provee(List<Product_Proveedor> prod_provee) {
+		this.prod_provee = prod_provee;
+	}
+	
+	
 		
 }

@@ -12,23 +12,23 @@
 </h:head>
 
 <h:head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<!-- Tell the browser to be responsive to screen width -->
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<!-- Favicon icon -->
-<link rel="icon" type="image/png" sizes="16x16"
-	href="images/favicon.png" />
-<!-- Bootstrap Core CSS -->
-<link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16"
+		href="images/favicon.png" />
+	<!-- Bootstrap Core CSS -->
+	<link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
-<!-- Custom CSS -->
-<link href="css/helper.css" rel="stylesheet" />
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-<!--[if lt IE 9]>
+	<!-- Custom CSS -->
+	<link href="css/helper.css" rel="stylesheet" />
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+	<!--[if lt IE 9]>
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -56,9 +56,15 @@
 							<h6 class="card-subtitle">Verifique y complete la
 								información</h6>
 							<h:form role="form" id="formregistro">
+							
 								<h:panelGrid columns="3">
+								
+									<h:outputLabel value="Id Categoria *" for="idCategoria" />
+									<h:inputText id="idCategoria"
+										value="#{categoriaController.categoria.catid}"
+										class="form-control" pt:placeholder="Ejm:1312" />
+									<h:message for="idCategoria" />
 
-									
 									<h:outputLabel value="Nombre Categoria *" for="nombCategoria" />
 									<h:inputText id="nombCategoria"
 										value="#{categoriaController.categoria.nombre}"
@@ -74,18 +80,17 @@
 
 								</h:panelGrid>
 
-								<h:commandButton action="#{categoriaController.addProdducto()}"
+								<h:commandButton action="#{categoriaController.addProdducto ()}"
 									value="Registrar producto +" />
 
 								<h:dataTable var="vproveedor" style="color:black"
 									class="table table-hover"
 									value="#{categoriaController.categoria.productos}" border="2">
-									
+
 									<h:column Style="color: black">
 										<f:facet name="header">Id *</f:facet>
 										<h:inputText value="#{vproveedor.id}" />
 									</h:column>
-								
 
 									<h:column Style="color: black">
 										<f:facet name="header">Nombre *</f:facet>
@@ -101,19 +106,17 @@
 										<f:facet name="header">Precio Unitario *</f:facet>
 										<h:inputText value="#{vproveedor.preciounit}" />
 									</h:column>
-
-
-
 								</h:dataTable>
 								
-								 * Seleccione Categoria Contenido: 
-            					<h:selectOneMenu id="categoriaList"
-									value="#{productoController.selectedDept}">
-									<f:selectItems value="#{categoriaController.allDepts}" />
-									<f:ajax render="opcionActual" />
+								 * Seleccione Categoria Producto: 
+            					<h:selectOneMenu id="categoria"
+									value="#{productoController.selectedCat}">
+									<f:selectItems itemLabel="Seleccione una Categoria"  />
+									<f:selectItems value="#{categoriaController.allCategorias}" var ="categoria" itemLabel="#{categoria.description}"
+									itemValue="#{categoria}" converter="generic"/> 
 								</h:selectOneMenu>
-								<p />
-
+								<p />	
+								
 								<h:commandButton action="#{categoriaController.guardar()}"
 									value="Guardar" class="btn btn-success" />
 							</h:form>

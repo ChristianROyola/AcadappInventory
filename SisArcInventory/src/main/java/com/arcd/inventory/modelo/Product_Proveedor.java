@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +29,16 @@ public class Product_Proveedor
 	@Column(name = "prodvee_preciofinal",precision=16, scale=2)
 	private BigDecimal preciofinal;
 
+	@ManyToOne
+	@JoinColumn(name="producto_id")
+	//@ManyToOne to Productos
+	private Producto product;
+	
+	@ManyToOne
+	@JoinColumn(name="proveedor_id")
+	//@ManyToOne to Productos
+	private Producto proveed;
+	
 	public int getId() {
 		return id;
 	}

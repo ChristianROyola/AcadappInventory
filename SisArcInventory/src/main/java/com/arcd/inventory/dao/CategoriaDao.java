@@ -21,6 +21,7 @@ public class CategoriaDao {
 	public void guardarCategoria(Categoria c) {
 		Categoria aux = leerCategoria(c.getCatid());
 		if (aux != null) {
+			System.out.println("CategoriaDao -> guardarCategoria aux=! null");
 			actualizarCategoria(c);
 		} else {
 			insetarCategoria(c);
@@ -41,12 +42,12 @@ public class CategoriaDao {
 		em.merge(c);
 	}
 
-	public Categoria leerCategoria(int id) {
+	public Categoria leerCategoria(String id) {
 		Categoria c = em.find(Categoria.class, id);
 		return c;
 	}
 
-	public void eliminarCategoria(int id) {
+	public void eliminarCategoria(String id) {
 		Categoria c = leerCategoria(id);
 		em.remove(c);
 	}
@@ -69,11 +70,9 @@ public class CategoriaDao {
 	
 	public List<Categoria> getCategoriaslist()
 	{
-		String jpql = "SELECT c.nombre FROM Categoria c";
-		Query query = em.createQuery(jpql, Categoria.class);
+		Query query = em.createQuery("SELECT c FROM Categoria c", Categoria.class);
 		List<Categoria> categorias = query.getResultList();
 		return categorias;
-		
 		//entityManager.createQuery("SELECT avg(responseEnd - responseStart)  FROM QualiteDeService q  join q.test",Double.class );
 	}
 	

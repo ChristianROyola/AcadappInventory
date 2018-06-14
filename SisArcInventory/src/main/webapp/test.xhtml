@@ -8,29 +8,23 @@
 
 <h:head>
 	<title>Departments</title>
-	<link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
 </h:head>
 <h:body>
-	<ui:composition template="/index-blank-test.xhtml">
-		<ui:define name="contenido">
-			<center>
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h:form class="form p-t-20">
-							
+	<h:form class="form p-t-20">
+
 								<div class="form-group">
-									<label for="exampleInputuname">Razon social * </label>
+									<label for="exampleInputuname">Razón Social * </label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="ti-user"></i>
 										</div>
-										<h:inputText type="number" class="form-control" id="InputRazon"
-											placeholder="Ruc"
-											value="#{proveedorController.proveedores.id	}" />
+										<h:inputText type="text" class="form-control" id="InputId"
+											placeholder="Razón Social"
+											value="#{proveedorController.proveedores.id}" />
 									</div>
 								</div>
+
 
 								<div class="form-group">
 									<label for="exampleInputuname">Nombre de Proveedor * </label>
@@ -85,9 +79,8 @@
 										<div class="input-group-addon">
 											<i class="ti-calendar"></i>
 										</div>
-										<h:outputScript library="js" name="calendar_es.js" />
 										<p:calendar id="german" value="#{proveedorController.fecha}"
-											locale="es" navigator="true" pattern="dd/mm/yyyy" />
+											locale="de" navigator="true" pattern="dd/MM/yyyy" />
 									</div>
 								</div>
 
@@ -112,11 +105,5 @@
 								<button type="submit"
 									class="btn btn-inverse waves-effect waves-light">Cancelar</button>
 							</h:form>
-						</div>
-					</div>
-				</div>
-			</center>
-		</ui:define>
-	</ui:composition>
 </h:body>
 </html>

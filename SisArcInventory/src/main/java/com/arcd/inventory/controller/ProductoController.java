@@ -33,10 +33,10 @@ public class ProductoController
 	
 	private Categoria c;
 	
-	private String selectedDept;
+	private String selectedCat;
 	
 	private String id;
-	
+		
 	@PostConstruct
 	public void init() 
 	{
@@ -177,12 +177,11 @@ public class ProductoController
 		this.c = c;
 	}
 
-	public String getSelectedDept() {
-		return selectedDept;
+	public String getSelectedCat() {
+		return selectedCat;
 	}
 
-	public void setSelectedDept(String selectedDept) {
-		this.selectedDept = selectedDept;
+	public void setSelectedCat(String selectedCat) {
+		this.selectedCat = selectedCat;
 	}
-
 }
