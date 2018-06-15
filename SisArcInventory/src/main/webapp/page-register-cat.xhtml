@@ -106,6 +106,17 @@
 										<f:facet name="header">Precio Unitario *</f:facet>
 										<h:inputText value="#{vproveedor.preciounit}" />
 									</h:column>
+									
+									<h:column Style="color: black">
+										<f:facet name="header">Descuento *</f:facet>
+										<h:inputText value="#{vproveedor.preciounit}" />
+									</h:column>
+									
+									<h:column Style="color: black">
+										<f:facet name="header">Precio Final *</f:facet>
+										<h:inputText value="#{vproveedor.preciounit}" />
+									</h:column>
+									
 								</h:dataTable>
 								
 								 * Seleccione Categoria Producto: 
@@ -114,6 +125,15 @@
 									<f:selectItems itemLabel="Seleccione una Categoria"  />
 									<f:selectItems value="#{categoriaController.allCategorias}" var ="categoria" itemLabel="#{categoria.description}"
 									itemValue="#{categoria}" converter="generic"/> 
+								</h:selectOneMenu>
+								<p />	
+								
+								 * Seleccione Proveedores de Productos: 
+            					<h:selectOneMenu id="provee"
+									value="#{productoController.selectedProvee}">
+									<f:selectItems itemLabel="Seleccione un Proveedor"  />
+									<f:selectItems value="#{proveedorController.allProveedores}" var ="provee" itemLabel="#{provee.description}"
+									itemValue="#provee" converter="generic"/> 
 								</h:selectOneMenu>
 								<p />	
 								

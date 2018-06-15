@@ -10,100 +10,33 @@
 	<title>Departments</title>
 
 </h:head>
+
 <h:body>
-	<h:form class="form p-t-20">
 
-								<div class="form-group">
-									<label for="exampleInputuname">Razón Social * </label>
-									<div class="input-group">
-										<div class="input-group-addon">
-											<i class="ti-user"></i>
-										</div>
-										<h:inputText type="text" class="form-control" id="InputId"
-											placeholder="Razón Social"
-											value="#{proveedorController.proveedores.id}" />
-									</div>
-								</div>
-
-
-								<div class="form-group">
-									<label for="exampleInputuname">Nombre de Proveedor * </label>
-									<div class="input-group">
-										<div class="input-group-addon">
-											<i class="ti-user"></i>
-										</div>
-										<h:inputText type="text" class="form-control" id="InputNombre"
-											placeholder="Nombre"
-											value="#{proveedorController.proveedores.nombre}" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="exampleInputEmail1">Dirección de Proveedor
-										* </label>
-									<div class="input-group">
-										<div class="input-group-addon">
-											<i class="ti-location-pin"></i>
-										</div>
-										<h:inputText type="email" class="form-control"
-											id="InputDireccion" placeholder="Direccion"
-											value="#{proveedorController.proveedores.direccion}" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="exampleInputuname">Teléfono de Proveedor *
-									</label>
-									<div class="input-group">
-										<div class="input-group-addon">
-											<i class="ti-mobile"></i>
-										</div>
-										<h:inputText type="text" class="form-control"
-											id="InputTelefono" placeholder="Telefono"
-											value="#{proveedorController.proveedores.telefono}" />
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="exampleInputuname">Correo de Proveedor * </label>
-									<div class="input-group">
-										<div class="input-group-addon">
-											<i class="ti-email"></i>
-										</div>
-										<h:inputText type="text" class="form-control" id="InputCorreo"
-											placeholder="Email"
-											value="#{proveedorController.proveedores.correo}" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label">Fecha de registro * </label>
-									<div class="input-group">
-										<div class="input-group-addon">
-											<i class="ti-calendar"></i>
-										</div>
-										<p:calendar id="german" value="#{proveedorController.fecha}"
-											locale="de" navigator="true" pattern="dd/MM/yyyy" />
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label">Comentario sobre Proveedor
-									</label>
-									<div class="input-group">
-										<div class="input-group-addon">
-											<i class="ti-comment"></i>
-										</div>
-										<h:inputTextarea class="form-control" id="InputComent"
-											placeholder="Comentario"
-											requiredMessage="Ingrese Descripcion" cols="100" rows="5"
-											value="#{proveedorController.proveedores.descripcion}" />
-									</div>
-								</div>
-
-								<h:commandButton value="Registrar" id="Crear"
-									action="#{proveedorController.crear()}"
-									class="btn btn-success btn-inline" />
-
-								<button type="submit"
-									class="btn btn-inverse waves-effect waves-light">Cancelar</button>
-							</h:form>
+	<div class="panel panel-primary" style="margin: 50px;">
+		<div class="panel-heading">
+			<h3 class="panel-title">Panel title</h3>
+		</div>
+		<div class="panel-body">
+			<div style="width: 100%; padding-left: -10px; border: 1px solid red;">
+				<div class="table-responsive">
+					<table id="example"
+						class="table table-striped table-hover dt-responsive display nowrap"
+						cellspacing="0">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Position</th>
+								<th>Office</th>
+								<th>Extn.</th>
+								<th>Start date</th>
+								<th>Salary</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </h:body>
 </html>

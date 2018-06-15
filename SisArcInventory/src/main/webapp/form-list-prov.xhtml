@@ -1,6 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html" template="index-blank.xhtml">
 
 	<ui:define name="titulo">Proveedores</ui:define>
@@ -9,49 +10,60 @@
 		<h:form>
 			<h:outputText value="El registro no contiene datos"
 				rendered="#{empty  proveedorController.lproveedores}"></h:outputText>
-				
-			<h:dataTable var="vproveedor" style="color:black"
+
+			<p:dataTable var="vproveedor" style="color:black"
 				class="table table-hover"
-				value="#{proveedorController.listaProveedores()}" border="2">
+				value="#{proveedorController.listaProveedores()}" border="2" id="mydata">
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Id</f:facet>
-		#{vproveedor.id}
-		</h:column>
+		<h:outputText value="#{vproveedor.id}"/>
+		</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Nombre:</f:facet>
-		#{vproveedor.nombre}
-		</h:column>
+		<h:outputText value="#{vproveedor.nombre}"/>
+		</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Telefono</f:facet>
-		#{vproveedor.telefono}
-		</h:column>
+		<h:outputText value="#{vproveedor.telefono}"/>
+		</p:column>
 
-		<h:column Style="color: black">
-							<f:facet name="header">Dirección</f:facet>
-				#{vproveedor.direccion}
-				</h:column>
-		
-				<h:column Style="color: black">
+				<p:column Style="color: black">
+					<f:facet name="header">Dirección</f:facet>
+				<h:outputText value="#{vproveedor.direccion}"/>
+				</p:column>
+
+				<p:column Style="color: black">
 					<f:facet name="header">Correo</f:facet>
-		#{vproveedor.correo}
-		</h:column>
+		<h:outputText value="#{vproveedor.correo}"/>
+		</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Fecha Registro</f:facet>
-		#{vproveedor.fechregistro}
-		</h:column>
+		<h:outputText value="#{vproveedor.fechregistro}"/>
+		</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">
 					Observación</f:facet>
-		#{vproveedor.descripcion}
-		</h:column>
+		<h:outputText value="#{vproveedor.descripcion}"/>
+		</p:column>
 
-			</h:dataTable>
-
+			</p:dataTable>
+			<p:panel header="Exportar los datos">
+				<h:commandLink>
+					<p:graphicImage value="/images/exc.ico" />
+					<p:dataExporter type="xls"
+						postProcessor="#{proveedorController.postProcessXLS}" target="mydata"
+						fileName="myexcel" />
+				</h:commandLink>
+				<h:commandLink>
+					<p:graphicImage value="/images/pddf.ico" />
+					<p:dataExporter type="pdf" target="mydata" fileName="mypdf" />
+				</h:commandLink>
+			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>

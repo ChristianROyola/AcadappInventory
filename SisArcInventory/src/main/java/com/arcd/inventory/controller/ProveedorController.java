@@ -1,6 +1,7 @@
 package com.arcd.inventory.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -11,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import org.primefaces.PrimeFaces;
@@ -18,6 +20,13 @@ import org.primefaces.event.SelectEvent;
 
 import com.arcd.inventory.dao.ProveedorDao;
 import com.arcd.inventory.modelo.Proveedores;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
 
 @ManagedBean
 @SessionScoped
@@ -37,6 +46,8 @@ public class ProveedorController {
 	private ProveedorDao pdao;
 
 	private Proveedores proveedores;
+	
+	private String selectedProv;
 	
 	@PostConstruct
 	public void init() {
@@ -121,6 +132,41 @@ public class ProveedorController {
 		pdao.deleteProveed(id);
 		System.out.println("Eliminado admin ..:" + proveedores);
 		return "actualizar";
+	}
+	
+	public List<SelectItem> getAllProveedores()
+	{
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		List<Proveedores> proveedrList = pdao.getProveedoreslist();
+		for (Proveedores  proveed : proveedrList)
+		{
+			items.add(new SelectItem(proveed.getId(),proveed.getNombre()));
+		}
+		return items;
+	}
+	
+    public void postProcessXLS(Object document) {
+        HSSFWorkbook wb = (HSSFWorkbook) document;
+        HSSFSheet sheet = wb.getSheetAt(0);
+        CellStyle style = wb.createCellStyle();
+        style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
+ 
+        for (Row row : sheet) {
+            for (Cell cell : row) {
+                cell.setCellValue(cell.getStringCellValue().toUpperCase());
+                cell.setCellStyle(style);
+            }
+        }
+    }
+    
+    
+	
+	public String getSelectedProv() {
+		return selectedProv;
+	}
+
+	public void setSelectedProv(String selectedProv) {
+		this.selectedProv = selectedProv;
 	}
 
 	/**

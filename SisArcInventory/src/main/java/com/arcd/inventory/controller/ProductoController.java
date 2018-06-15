@@ -35,6 +35,8 @@ public class ProductoController
 	
 	private String selectedCat;
 	
+	private String selectedProvee;
+	
 	private String id;
 		
 	@PostConstruct
@@ -119,6 +121,14 @@ public class ProductoController
 		System.out.println("Cargando datos de Producto a editar" + id);
 		producto = productodao.leerProduct(id);
 		//return "listadoCategoriaAcciones";	
+	}
+		
+	public String getSelectedProvee() {
+		return selectedProvee;
+	}
+
+	public void setSelectedProvee(String selectedProvee) {
+		this.selectedProvee = selectedProvee;
 	}
 
 	public CategoriaDao getCatedao() {
