@@ -29,8 +29,8 @@ public class Proveedores
 {
 	@Id
 	@Column(name = "prov_razon_social")
-	@NotBlank(message = "Ingrese la razón social de Proveedor (Ruc) ")
-	private String id;
+	@NotNull(message = "Ingrese la razón social de Proveedor (Ruc) ")
+	private int id;
 	
 	@Column(name = "prov_nombre")
 	@NotBlank(message = "Ingrese nombre de proveedor")
@@ -59,11 +59,11 @@ public class Proveedores
 	@OneToMany(mappedBy="proveed", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Product_Proveedor> prod_provee;
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

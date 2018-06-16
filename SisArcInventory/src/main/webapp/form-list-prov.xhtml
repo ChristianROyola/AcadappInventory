@@ -2,63 +2,71 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://java.sun.com/jsf/html" template="index-blank.xhtml">
+	xmlns:h="http://java.sun.com/jsf/html" template="index-blank-admin2.xhtml">
 
 	<ui:define name="titulo">Proveedores</ui:define>
 	<ui:define name="contenido">
 
 		<h:form>
+		<h:head>
+		LISTADO DE PERSONAL PROVEEDORES </h:head>
 			<h:outputText value="El registro no contiene datos"
-				rendered="#{empty  proveedorController.lproveedores}"></h:outputText>
+				rendered="#{empty  proveedorController.listaProveedores()}"></h:outputText>
 
 			<p:dataTable var="vproveedor" style="color:black"
 				class="table table-hover"
-				value="#{proveedorController.listaProveedores()}" border="2" id="mydata">
+				value="#{proveedorController.listaProveedores()}" border="2"
+				id="mydata"
+				widgetVar="ProvTable" emptyMessage="No se han encontrado proveedores con esa busqueda" 
+				filteredValue="#{proveedorController.filteredProveed}">
 
-				<p:column Style="color: black">
-					<f:facet name="header">Id</f:facet>
-		<h:outputText value="#{vproveedor.id}"/>
-		</p:column>
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Buscar en todos los campos:" />
+						<p:inputText id="globalFilter" onkeyup="PF('ProvTable').filter()"
+							style="width:150px" placeholder="Ingrese Busqueda" />
+					</p:outputPanel>
+				</f:facet>
 
-				<p:column Style="color: black">
-					<f:facet name="header">Nombre:</f:facet>
-		<h:outputText value="#{vproveedor.nombre}"/>
-		</p:column>
-
-				<p:column Style="color: black">
-					<f:facet name="header">Telefono</f:facet>
-		<h:outputText value="#{vproveedor.telefono}"/>
-		</p:column>
-
-				<p:column Style="color: black">
-					<f:facet name="header">Dirección</f:facet>
-				<h:outputText value="#{vproveedor.direccion}"/>
+				<p:column headerText="Id" filterBy="#{vproveedor.id}" filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.id}" />
 				</p:column>
 
-				<p:column Style="color: black">
-					<f:facet name="header">Correo</f:facet>
-		<h:outputText value="#{vproveedor.correo}"/>
-		</p:column>
+				<p:column headerText="Nombre" filterBy="#{vproveedor.nombre}" filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.nombre}" />
+				</p:column>
+				
+				<p:column headerText="Telefono" filterBy="#{vproveedor.telefono}" filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.telefono}" />
+				</p:column>
 
-				<p:column Style="color: black">
+				<p:column headerText="Dirección" filterBy="#{vproveedor.direccion}" filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.direccion}" />
+				</p:column>
+				
+				<p:column headerText="Correo" filterBy="#{vproveedor.correo}" filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.correo}" />
+				</p:column>
+
+				<p:column filterBy="#{vproveedor.fechregistro}" filterMatchMode="contains">
 					<f:facet name="header">Fecha Registro</f:facet>
-		<h:outputText value="#{vproveedor.fechregistro}"/>
-		</p:column>
-
-				<p:column Style="color: black">
-					<f:facet name="header">
-					Observación</f:facet>
-		<h:outputText value="#{vproveedor.descripcion}"/>
-		</p:column>
-
+					<h:outputText value="#{vproveedor.fechregistro}" />
+				</p:column>
+				
+				<p:column filterBy="#{vproveedor.descripcion}" filterMatchMode="contains">
+					<f:facet name="header">Observación</f:facet>
+					<h:outputText value="#{vproveedor.descripcion}" />
+				</p:column>
+			
 			</p:dataTable>
 			<p:panel header="Exportar los datos">
 				<h:commandLink>
 					<p:graphicImage value="/images/exc.ico" />
 					<p:dataExporter type="xls"
-						postProcessor="#{proveedorController.postProcessXLS}" target="mydata"
-						fileName="myexcel" />
+						postProcessor="#{proveedorController.postProcessXLS}"
+						target="mydata" fileName="myexcel" />
 				</h:commandLink>
+
 				<h:commandLink>
 					<p:graphicImage value="/images/pddf.ico" />
 					<p:dataExporter type="pdf" target="mydata" fileName="mypdf" />

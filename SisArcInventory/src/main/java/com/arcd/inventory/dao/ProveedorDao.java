@@ -8,8 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import com.arcd.inventory.modelo.Categoria;
-import com.arcd.inventory.modelo.Persona;
 import com.arcd.inventory.modelo.Proveedores;
 
 
@@ -22,7 +20,7 @@ public class ProveedorDao
 	/**
 	 *Metodo para buscar
 	 */
-	public Proveedores selectProveedores(String id) 
+	public Proveedores selectProveedores(int id) 
 	{
 		Proveedores p = em.find(Proveedores.class, id);
 		return p;
@@ -81,7 +79,7 @@ public class ProveedorDao
 	
 	public List<Proveedores> getProveedoreslist()
 	{
-		Query query = em.createQuery("SELECT c FROM Proveedores c", Proveedores.class);
+		Query query = em.createQuery("SELECT c from Proveedores c", Proveedores.class);
 		List<Proveedores> categorias = query.getResultList();
 		return categorias;
 	}

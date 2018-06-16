@@ -49,6 +49,8 @@ public class ProveedorController {
 	
 	private String selectedProv;
 	
+	private List<Proveedores> filteredProveed;
+	
 	@PostConstruct
 	public void init() {
 		proveedores = new Proveedores();
@@ -153,7 +155,7 @@ public class ProveedorController {
  
         for (Row row : sheet) {
             for (Cell cell : row) {
-                cell.setCellValue(cell.getStringCellValue().toUpperCase());
+                cell.setCellValue(cell.getStringCellValue());
                 cell.setCellStyle(style);
             }
         }
@@ -228,6 +230,14 @@ public class ProveedorController {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+	
+	public List<Proveedores> getFilteredProveed() {
+		return filteredProveed;
+	}
+
+	public void setFilteredProveed(List<Proveedores> filteredProveed) {
+		this.filteredProveed = filteredProveed;
 	}
 
 	@Override

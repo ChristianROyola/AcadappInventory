@@ -2,7 +2,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="index-blank-admin.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="index-blank-admin.xhtml">
 	<h:head>
 	</h:head>
 	<ui:define name="titulo">Nomina Proveedores</ui:define>
@@ -11,62 +11,74 @@
 		<h:form>
 			<h:outputText value="El registro no contiene datos"
 				rendered="#{empty  proveedorController.lproveedores}"></h:outputText>
-			<h:dataTable var="vproveed" class="table table-hover"
-				style="color:black" value="#{proveedorController.listaProveedores()}"
-				border="1">
+			<p:dataTable var="vproveed" class="table table-hover"
+				style="color:black"
+				value="#{proveedorController.listaProveedores()}" border="1"
+				tableStyle="width:auto">
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
+					<f:facet name="header">ID:</f:facet>
+				#{vproveed.id}
+				</p:column>
+
+				<p:column Style="color: black">
 					<f:facet name="header">Nombre:</f:facet>
 				#{vproveed.nombre}
-				</h:column>
+				</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Correo:</f:facet>
 				#{vproveed.correo}
-				</h:column>
+				</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Dirección:</f:facet>
 				#{vproveed.direccion}
-				</h:column>
+				</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Teléfono:</f:facet>
 				#{vproveed.telefono}
-				</h:column>
+				</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Fecha Registro:</f:facet>
 				#{vproveed.fechregistro}
-				</h:column>
-				
-				<h:column Style="color: black">
+				</p:column>
+
+				<p:column Style="color: black">
 					<f:facet name="header">Comentario:</f:facet>
 				#{vproveed.descripcion}
-				</h:column>
+				</p:column>
 				
-				<h:column Style="color: black">
-					<center>
-						<f:facet name="header" Style="color: black">Editar</f:facet>
-					</center>
-					<center>
+				<p:row>
+					<p:column colspan="2">Herramientas</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column rowspan="5">
+						<center>
+
+							<h:commandButton value="Editar"
+								class="btn btn-default btn-outline btn-rounded m-b-10"
+								image="images/editar.png"></h:commandButton>
+
+							<a href="recuperarProv.xhtml?id=#{vproveed.id}"
+								class="btn btn-default btn-outline btn-rounded m-b-10"></a>
+						</center>
+					</p:column>
+
+					<p:column rowspan="5">
+
+						
+							<h:commandButton value="Eliminar"
+								class="btn btn-default btn-outline btn-rounded m-b-10"
+								action="#{proveedorController.eliminar(vproveed.id)}"
+								image="images/eliminar.png"></h:commandButton>
 					
-						<a href="recuperarProv.xhtml?id=#{vproveed.id}"
-							class="btn btn-info btn-md"> Editar </a>
-					</center>
-				</h:column>
-
-				<h:column>
-					<center>
-						<f:facet name="header" Style="color: black">Eliminar</f:facet>
-					</center>
-					<center>
-						<h:commandButton value="Eliminar" class="btn btn-danger btn-md"
-						action="#{proveedorController.eliminar(vproveed.id)}"></h:commandButton>
-					</center>
-				</h:column>
-
-			</h:dataTable>
+					</p:column>
+				</p:row>
+			</p:dataTable>
 			<h:commandButton action="page-register-prov" value="Nuevo Proveedor"
 				class="btn btn-primary" />
 		</h:form>
