@@ -173,10 +173,10 @@ public class PersonaController
 					e.printStackTrace();
 				}
 			} else if (pdao.login(personas.getCorreo(), personas.getContrasenia()).get(0).getPerfil()
-					.equals("ADMIN")) {
+					.equals("ADMINISTRADOR")) {
 				// FacesContext contexAS= FacesContext.getCurrentInstance();
 				try {
-					contex.getExternalContext().redirect("index.xhtml");
+					contex.getExternalContext().redirect("index-blank-admin.xhtml");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
