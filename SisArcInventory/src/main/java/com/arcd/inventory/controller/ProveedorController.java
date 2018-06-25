@@ -37,7 +37,7 @@ public class ProveedorController {
 
 	/**
 	 * DEFINICION DE VARIABLES PARA LA RECUPERACION DE LA
-	 * LISTA(PERSONA-LOCAL-EVENTO)
+	 * LISTA(PROVEEDORES)
 	 */
 	private List<Proveedores> ListProvId;
 	private List<Proveedores> Lproveedores;
@@ -67,7 +67,7 @@ public class ProveedorController {
 
 	/**
 	 * Creacion del objeto Proveeddores condicinamiento segun las sentencias de
-	 * validacion
+	 * validación
 	 */
 	public void crear() {
 		if (validarCorreo() == true) {
@@ -161,8 +161,6 @@ public class ProveedorController {
         }
     }
     
-    
-	
 	public String getSelectedProv() {
 		return selectedProv;
 	}

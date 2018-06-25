@@ -22,7 +22,7 @@ public class Persona
 {
 	@Id
 	@Column(name = "pers_cedula")
-	@Pattern(regexp = "[\\s]*[0-9]*[1-9]+",message="Ingrese unicamente numeros")
+	@Pattern(regexp = "[\\s]*[0-9]*[1-9]+",message="Cedula ingresada incorrecta")
 	@NotBlank(message = "Por favor ingrese la cedula")
 	private String cedula;
 
@@ -42,7 +42,7 @@ public class Persona
 	private String perfil;
 
 	@Column(name = "pers_contrasenia")
-	@Size(min = 6, message = "Debe ingresar un minimo de 6 caracteres")
+	@Size(min = 6, message = "Su contraseña debe tener un minimo de 6 caracteres")
 	private String contrasenia;
 
 	@Column(name = "pers_estado")

@@ -27,9 +27,9 @@ public class CategoriaController {
 	
     private SelectItem[] categoriaSelectItems;
     
-    
     private String id;
 		
+    public String selectedCat;
     
 	@PostConstruct
 	public void init(){
@@ -103,6 +103,8 @@ public class CategoriaController {
 				System.out.println(categoria.getCatid());
 			} else {
 				System.out.println("INSERTAAAA  ------->>>>> "+categoria);
+				System.out.println("Categoria seleccionada --->>>>> "+selectedCat);
+				
 				catedao.insetarCategoria(categoria);
 				inicializar();
 			}
@@ -128,7 +130,7 @@ public class CategoriaController {
 	
 	public void inicializar() 
 	{
-		//categoria.setCatid(0);
+		categoria.setCatid("");
 		categoria.setNombre("");
 		categoria.setDescipcion("");
 	}
@@ -163,4 +165,13 @@ public class CategoriaController {
 		}
 		return items;
 	}
+
+	public String getSelectedCat() {
+		return selectedCat;
+	}
+
+	public void setSelectedCat(String selectedCat) {
+		this.selectedCat = selectedCat;
+	}
+	
 }

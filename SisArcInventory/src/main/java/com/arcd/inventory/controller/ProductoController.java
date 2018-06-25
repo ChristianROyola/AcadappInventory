@@ -33,7 +33,7 @@ public class ProductoController
 	
 	private Categoria c;
 	
-	private String selectedCat;
+	public String selectedCat;
 	
 	private String selectedProvee;
 	
@@ -63,6 +63,7 @@ public class ProductoController
 	}
 	
 	public String insertar() {
+		
 		productodao.guardarProducto(producto);
 		loadProducto();
 		inicializar();

@@ -35,7 +35,7 @@
 </h:head>
 
 <h:body class="fix-header fix-sidebar">
-	<ui:composition template="index-blank-admin.xhtml">
+	<ui:composition template="index-blank-admin2.xhtml">
 		<ui:define name="titulo">Categorias</ui:define>
 		<ui:define name="contenido">
 			<center>
@@ -56,9 +56,9 @@
 							<h6 class="card-subtitle">Verifique y complete la
 								información</h6>
 							<h:form role="form" id="formregistro">
-							
+
 								<h:panelGrid columns="3">
-								
+
 									<h:outputLabel value="Id Categoria *" for="idCategoria" />
 									<h:inputText id="idCategoria"
 										value="#{categoriaController.categoria.catid}"
@@ -74,69 +74,69 @@
 									<h:outputLabel value="Descripción: " for="catDescripcion" />
 									<h:inputTextarea id="catDescripcion"
 										value="#{categoriaController.categoria.descipcion}"
-										class="form-control" requiredMessage="Ingrese Descripcion"
+										class="form-control" requiredMessage="Ingrese Descripción"
 										cols="100" rows="5" />
 									<h:message for="catDescripcion" />
 
+									<h:outputLabel value="* Seleccione Categoria Producto: " />
+									<p:selectOneMenu id="categoria"
+										value="#{categoriaController.selectedCat}">
+										<f:selectItems itemLabel="Seleccione una Categoria" />
+										<f:selectItems value="#{categoriaController.allCategorias}"
+											var="categoria" itemLabel="#{categoria.description}"
+											itemValue="#{categoria}" converter="generic" />
+									</p:selectOneMenu>
+									<p />
+									<h:outputLabel value=" * Seleccione Proveedores de Productos: " />
+									<p:selectOneMenu id="provee"
+										value="#{productoController.selectedProvee}">
+										<f:selectItems itemLabel="Seleccione un Proveedor" />
+										<f:selectItems value="#{proveedorController.allProveedores}"
+											var="provee" itemLabel="#{provee.description}"
+											itemValue="#provee" converter="generic" />
+									</p:selectOneMenu>
+									<p />
 								</h:panelGrid>
-
-								<h:commandButton action="#{categoriaController.addProdducto ()}"
-									value="Registrar producto +" />
-
-								<h:dataTable var="vproveedor" style="color:black"
-									class="table table-hover"
+								<h:commandButton action="#{categoriaController.addProdducto()}"
+									value="Registrar producto +" class="btn btn-success" />
+								<p />
+								<p:dataTable var="vproduct" class="table table-hover"
 									value="#{categoriaController.categoria.productos}" border="2">
 
-									<h:column Style="color: black">
+									<p:column Style="color: black">
 										<f:facet name="header">Id *</f:facet>
-										<h:inputText value="#{vproveedor.id}" />
-									</h:column>
+										<h:inputText value="#{vproduct.id}" />
+									</p:column>
 
-									<h:column Style="color: black">
+									<p:column Style="color: black">
 										<f:facet name="header">Nombre *</f:facet>
-										<h:inputText value="#{vproveedor.nombre}" />
-									</h:column>
+										<h:inputText value="#{vproduct.nombre}" />
+									</p:column>
 
-									<h:column Style="color: black">
-										<f:facet name="header">Descripción Producto * </f:facet>
-										<h:inputText value="#{vproveedor.descripcion}" />
-									</h:column>
+									<p:column Style="color: black">
+										<f:facet name="header">Descrip. Producto * </f:facet>
+										<h:inputText value="#{vproduct.descripcion}" />
+									</p:column>
 
-									<h:column Style="color: black">
+									<p:column Style="color: black">
 										<f:facet name="header">Precio Unitario *</f:facet>
-										<h:inputText value="#{vproveedor.preciounit}" />
-									</h:column>
-									
-									<h:column Style="color: black">
+										<h:inputText value="#{vproduct.preciounit}" />
+									</p:column>
+
+									<p:column Style="color: black">
 										<f:facet name="header">Descuento *</f:facet>
-										<h:inputText value="#{}" />
-									</h:column>
-									
-									<h:column Style="color: black">
+										<h:inputText
+											value="#{producto_ProveedorController.prodv.descuento}" />
+									</p:column>
+
+									<p:column Style="color: black">
 										<f:facet name="header">Precio Final *</f:facet>
-										<h:inputText value="#{vproveedor.preciounit}" />
-									</h:column>
-									
-								</h:dataTable>
-								
-								 * Seleccione Categoria Producto: 
-            					<h:selectOneMenu id="categoria"
-									value="#{productoController.selectedCat}">
-									<f:selectItems itemLabel="Seleccione una Categoria"  />
-									<f:selectItems value="#{categoriaController.allCategorias}" var ="categoria" itemLabel="#{categoria.description}"
-									itemValue="#{categoria}" converter="generic"/> 
-								</h:selectOneMenu>
-								<p />	
-								
-								 * Seleccione Proveedores de Productos: 
-            					<h:selectOneMenu id="provee"
-									value="#{productoController.selectedProvee}">
-									<f:selectItems itemLabel="Seleccione un Proveedor"  />
-									<f:selectItems value="#{proveedorController.allProveedores}" var ="provee" itemLabel="#{provee.description}"
-									itemValue="#provee" converter="generic"/> 
-								</h:selectOneMenu>
-								<p />	
-								
+										<h:inputText
+											value="#{producto_ProveedorController.prodv.preciofinal}" />
+									</p:column>
+								</p:dataTable>
+
+
 								<h:commandButton action="#{categoriaController.guardar()}"
 									value="Guardar" class="btn btn-success" />
 							</h:form>
