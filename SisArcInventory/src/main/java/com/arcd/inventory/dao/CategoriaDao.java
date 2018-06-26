@@ -84,4 +84,11 @@ public class CategoriaDao {
 		return stringArray;
 	}
 	
+	public List<Categoria> getCategoriasProduct(String id)
+	{
+		Query query = em.createQuery("SELECT c FROM Categoria c WHERE c.catid = "+id, Categoria.class);
+		List<Categoria> categorias = query.getResultList();
+		return categorias;
+		//entityManager.createQuery("SELECT avg(responseEnd - responseStart)  FROM QualiteDeService q  join q.test",Double.class );
+	}
 }

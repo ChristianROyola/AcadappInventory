@@ -103,9 +103,8 @@ public class CategoriaController {
 				System.out.println(categoria.getCatid());
 			} else {
 				System.out.println("INSERTAAAA  ------->>>>> "+categoria);
-				System.out.println("Categoria seleccionada --->>>>> "+selectedCat);
-				
 				catedao.insetarCategoria(categoria);
+				getCateProdduct();
 				inicializar();
 			}
 		} catch (Exception e) 
@@ -164,6 +163,16 @@ public class CategoriaController {
 			items.add(new SelectItem(category.getCatid(),category.getNombre()));
 		}
 		return items;
+	}
+	
+	public void getCateProdduct()
+	{
+		List<Categoria> categoryList = catedao.getCategoriasProduct(selectedCat);
+		System.out.println("getCateProduct ---");
+		for (Categoria category : categoryList)
+		{
+			System.out.println("recupera categoria seleccionada ------>>> "+category.getNombre());
+		}
 	}
 
 	public String getSelectedCat() {
