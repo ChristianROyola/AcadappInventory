@@ -171,7 +171,7 @@ public class CategoriaController {
 		System.out.println("getCateProduct ---");
 		for (Categoria category : categoryList)
 		{
-			System.out.println("recupera categoria seleccionada ------>>> "+category.getNombre());
+			System.out.println("recupera categoria seleccionada desde select one menu ------>>> "+category.getCatid()+" - "+category.getNombre()+" - "+ category.getDescipcion());
 		}
 	}
 

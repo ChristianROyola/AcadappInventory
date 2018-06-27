@@ -63,8 +63,8 @@ public class ProductoController
 	}
 	
 	public String insertar() {
+		getCateProdduct();
 		
-		productodao.guardarProducto(producto);
 		loadProducto();
 		inicializar();
 		//return "listarEventos";
@@ -123,7 +123,20 @@ public class ProductoController
 		producto = productodao.leerProduct(id);
 		//return "listadoCategoriaAcciones";	
 	}
-		
+	
+	public void getCateProdduct()
+	{
+		List<Categoria> categoryList = catedao.getCategoriasProduct(selectedCat);
+		System.out.println("getCateProduct ---");
+		for (Categoria category : categoryList)
+		{
+			producto.setCate(category);
+			System.out.println("recupera categoria seleccionada desde select one menu ------>>> "+category.getCatid()+" - "+category.getNombre()+" - "+ category.getDescipcion());
+		}
+		productodao.guardarProducto(producto);
+	}
+	
+	
 	public String getSelectedProvee() {
 		return selectedProvee;
 	}
