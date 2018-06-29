@@ -11,50 +11,63 @@
 		<h:form>
 			<h:outputText value="El registro no contiene datos"
 				rendered="#{empty  proveedorController.lproveedores}"></h:outputText>
-			<p:dataTable var="vproveed" class="table table-hover"
-				style="color:black"
-				value="#{proveedorController.listaProveedores()}" border="1"
-				tableStyle="width:auto">
+			
+			<p:dataTable var="vproveedor" paginator="true"
+				value="#{proveedorController.listaProveedores()}" rows="5"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+             	{PreviousPageLink} {PageLinks} {NextPageLink}
+             	{LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" widgetVar="ProvTable">
 
-				<p:column Style="color: black">
-					<f:facet name="header">ID:</f:facet>
-				#{vproveed.id}
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Buscar en todos los campos:" />
+						<p:inputText id="globalFilter" onkeyup="PF('ProvTable').filter()"
+							style="width:150px" placeholder="Ingrese Busqueda" />
+					</p:outputPanel>
+				</f:facet>
+
+				<p:column headerText="Id" filterBy="#{vproveedor.id}"
+					filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.id}" />
 				</p:column>
 
-				<p:column Style="color: black">
-					<f:facet name="header">Nombre:</f:facet>
-				#{vproveed.nombre}
+				<p:column headerText="Nombre" filterBy="#{vproveedor.nombre}"
+					filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.nombre}" />
 				</p:column>
 
-				<p:column Style="color: black">
-					<f:facet name="header">Correo:</f:facet>
-				#{vproveed.correo}
+				<p:column headerText="Telefono" filterBy="#{vproveedor.telefono}"
+					filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.telefono}" />
 				</p:column>
 
-				<p:column Style="color: black">
-					<f:facet name="header">Dirección:</f:facet>
-				#{vproveed.direccion}
+				<p:column headerText="Dirección" filterBy="#{vproveedor.direccion}"
+					filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.direccion}" />
 				</p:column>
 
-				<p:column Style="color: black">
-					<f:facet name="header">Teléfono:</f:facet>
-				#{vproveed.telefono}
+				<p:column headerText="Correo" filterBy="#{vproveedor.correo}"
+					filterMatchMode="contains">
+					<h:outputText value="#{vproveedor.correo}" />
 				</p:column>
 
-				<p:column Style="color: black">
-					<f:facet name="header">Fecha Registro:</f:facet>
-				#{vproveed.fechregistro}
+				<p:column filterBy="#{vproveedor.fechregistro}"
+					filterMatchMode="contains">
+					<f:facet name="header">Fecha Registro</f:facet>
+					<h:outputText value="#{vproveedor.fechregistro}" />
 				</p:column>
 
-				<p:column Style="color: black">
-					<f:facet name="header">Comentario:</f:facet>
-				#{vproveed.descripcion}
+				<p:column filterBy="#{vproveedor.descripcion}"
+					filterMatchMode="contains">
+					<f:facet name="header">Observación</f:facet>
+					<h:outputText value="#{vproveedor.descripcion}" />
 				</p:column>
-				
+
 				<p:row>
 					<p:column colspan="2">Herramientas</p:column>
 				</p:row>
-				
+
 				<p:row>
 					<p:column rowspan="5">
 						<center>
@@ -70,12 +83,11 @@
 
 					<p:column rowspan="5">
 
-						
-							<h:commandButton value="Eliminar"
-								class="btn btn-default btn-outline btn-rounded m-b-10"
-								action="#{proveedorController.eliminar(vproveed.id)}"
-								image="images/eliminar.png"></h:commandButton>
-					
+						<h:commandButton value="Eliminar"
+							class="btn btn-default btn-outline btn-rounded m-b-10"
+							action="#{proveedorController.eliminar(vproveed.id)}"
+							image="images/eliminar.png"></h:commandButton>
+
 					</p:column>
 				</p:row>
 			</p:dataTable>

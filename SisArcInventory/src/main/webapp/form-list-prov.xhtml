@@ -12,13 +12,13 @@
 		LISTADO DE PERSONAL PROVEEDORES </h:head>
 			<h:outputText value="El registro no contiene datos"
 				rendered="#{empty  proveedorController.listaProveedores()}"></h:outputText>
-
-			<p:dataTable var="vproveedor" style="color:black"
-				class="table table-hover"
-				value="#{proveedorController.listaProveedores()}" border="2"
-				id="mydata"
-				widgetVar="ProvTable" emptyMessage="No se han encontrado proveedores con esa busqueda" 
-				filteredValue="#{proveedorController.filteredProveed}">
+ 
+			<p:dataTable var="vproveedor" value="#{proveedorController.lproveedores}" rows="10" 
+				paginator="true" 
+				emptyMessage="No se han encontrado proveedores con esa busqueda" 
+				filteredValue="#{proveedorController.filteredProveed}"
+				rowsPerPageTemplate="5,10,15"
+				widgetVar="ProvTable">	
 
 				<f:facet name="header">
 					<p:outputPanel>
@@ -59,6 +59,7 @@
 				</p:column>
 			
 			</p:dataTable>
+			
 			<p:panel header="Exportar los datos">
 				<h:commandLink>
 					<p:graphicImage value="/images/exc.ico" />

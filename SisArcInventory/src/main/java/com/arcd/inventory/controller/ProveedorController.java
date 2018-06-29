@@ -237,7 +237,7 @@ public class ProveedorController {
 	public void setFilteredProveed(List<Proveedores> filteredProveed) {
 		this.filteredProveed = filteredProveed;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "ProveedorController [idrecuprerar=" + idrecuprerar + ", coincidencia=" + coincidencia + ", ListProvId="

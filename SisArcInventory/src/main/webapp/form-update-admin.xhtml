@@ -2,7 +2,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="index-blank-admin.xhtml">
+	template="index-blank-admin.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	
 	<h:head>
 	</h:head>
 	<ui:define name="titulo">Nomina Personal</ui:define>
@@ -11,46 +13,54 @@
 		<h:form>
 			<h:outputText value="El registro no contiene datos"
 				rendered="#{empty  personaController.lpersonas}"></h:outputText>
-			<h:dataTable var="vpersonas" class="table table-hover"
+			
+			<p:dataTable var="vpersonas" class="table table-hover"
 				style="color:black" value="#{personaController.listaPersonas()}"
-				border="1">
+				paginator="true" rows="10"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink}
+	            {PreviousPageLink} {PageLinks} {NextPageLink}
+	            {LastPageLink} {RowsPerPageDropdown}"
+				emptyMessage="No se han encontrado proveedores con esa busqueda"
+				rowsPerPageTemplate="5,10,15"
+				filteredValue = "#{personaController.filteredPersonas}">
+				
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Buscar en todos los campos:" />
+						<p:inputText id="globalFilter" onkeyup="PF('ProvTable').filter()"
+							style="width:150px" placeholder="Ingrese Busqueda" />
+					</p:outputPanel>
+				</f:facet>
+				
+				<p:column headerText="Cedula" filterBy="#{vpersonas.cedula}" filterMatchMode="contains">
+					<h:outputText value="#{vpersonas.cedula}" />
+				</p:column>
 
-				<h:column Style="color: black">
-					<f:facet name="header">Cedula:</f:facet>
-						#{vpersonas.cedula}
-				</h:column>
+				<p:column headerText="Nombre" filterBy="#{vpersonas.nombre}" filterMatchMode="contains">
+					<h:outputText value="#{vpersonas.nombre}" />
+				</p:column>
+				
+				<p:column headerText="Apellido" filterBy="#{vpersonas.apellido}" filterMatchMode="contains">
+					<h:outputText value="#{vpersonas.apellido}" />
+				</p:column>
 
-				<h:column Style="color: black">
-					<f:facet name="header">Nombre:</f:facet>
-				#{vpersonas.nombre}
-				</h:column>
+				<p:column headerText="Correo" filterBy="#{vpersonas.correo}" filterMatchMode="contains">
+					<h:outputText value="#{vpersonas.correo}" />
+				</p:column>
 
-				<h:column Style="color: black">
-					<f:facet name="header">Apellido</f:facet>
-				#{vpersonas.apellido}
-				</h:column>
+				<p:column headerText="Perfil" filterBy="#{vpersonas.perfil}" filterMatchMode="contains">
+					<h:outputText value="#{vpersonas.perfil}" />
+				</p:column>
 
-				<h:column Style="color: black">
-					<f:facet name="header">Correo</f:facet>
-				#{vpersonas.correo}
-				</h:column>
+				<p:column headerText="Contraseña" filterBy="#{vpersonas.contrasenia}" filterMatchMode="contains">
+					<h:outputText value="****" />
+				</p:column>
 
-				<h:column Style="color: black">
-					<f:facet name="header">Perfil</f:facet>
-				#{vpersonas.perfil}
-				</h:column>
+				<p:column headerText="Estado" filterBy="#{vpersonas.estado}" filterMatchMode="contains">
+					<h:outputText value="#{vpersonas.estado}" />
+				</p:column>
 
-				<h:column Style="color: black">
-					<f:facet name="header">Contraseña</f:facet>
-				******
-				</h:column>
-
-				<h:column Style="color: black">
-					<f:facet name="header">Estado</f:facet>
-				#{vpersonas.estado}
-				</h:column>
-
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<center>
 						<f:facet name="header" Style="color: black">Editar</f:facet>
 					</center>
@@ -58,9 +68,9 @@
 						<a href="recuperarPersona.xhtml?id=#{vpersonas.cedula}"
 							class="btn btn-info btn-md"> Editar </a>
 					</center>
-				</h:column>
+				</p:column>
 
-				<h:column>
+				<p:column>
 					<center>
 						<f:facet name="header" Style="color: black">Eliminar</f:facet>
 					</center>
@@ -68,7 +78,7 @@
 						<h:commandButton value="Eliminar" class="btn btn-danger btn-md"
 							action="#{personaController.eliminar(vpersonas.cedula)}"></h:commandButton>
 					</center>
-				</h:column>
+				</p:column>
 
 <!-- 				<h:column Style="color: black">
 					<center>
@@ -80,9 +90,10 @@
 					</center>
 				</h:column>
  -->
-			</h:dataTable>
+			</p:dataTable>
 			<h:commandButton action="page-register-adma" value="Nuevo Usuario"
 				class="btn btn-primary" />
+				
 		</h:form>
 	</ui:define>
 </ui:composition>

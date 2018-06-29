@@ -58,8 +58,7 @@ public class CategoriaDao {
 		List<Categoria> categorias = query.getResultList();
 		return categorias;
 	}
-	
-	
+		
 	public List<Categoria> getCategorias2()
 	{
 		String jpql = "SELECT distinct c FROM Categoria c LEFT JOIN FETCH c.productos";

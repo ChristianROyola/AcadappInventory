@@ -19,12 +19,18 @@ import org.primefaces.context.RequestContext;
 
 import com.arcd.inventory.dao.PersonaDao;
 import com.arcd.inventory.modelo.Persona;
+import com.arcd.inventory.modelo.Proveedores;
+import com.arcd.inventory.utils.ConnReports;
 import com.arcd.inventory.utils.SessionUtils;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 @ManagedBean
 @SessionScoped
-public class PersonaController
-{
+public class PersonaController {
 	/*
 	 * Variable para la validacion de la cedula
 	 */
@@ -34,7 +40,7 @@ public class PersonaController
 	private Persona personas = null;
 
 	private String id;
-	
+
 	private String pactual;
 	private int idEditUser;
 
@@ -59,6 +65,8 @@ public class PersonaController
 
 	private int idrecuprerar; // -----------agregado
 
+	private List<Persona> filteredPersonas;
+
 	/**
 	 * Definicion de variables para la recuperacion de la
 	 * lista(Persona-Local-Evento)
@@ -71,13 +79,15 @@ public class PersonaController
 	private List<Persona> lpersonas;
 
 	private Persona myUser;
-
+	
+	public ConnReports con; 
+	
 	@PostConstruct
 	public void init() {
 		personas = new Persona();
-		//lpersonas = listaPersonas();
+		// lpersonas = listaPersonas();
 		ListPerID = new ArrayList<Persona>();
-		//consultaLocalEventos();
+		// consultaLocalEventos();
 	}
 
 	/**
@@ -108,19 +118,20 @@ public class PersonaController
 		} else {
 			this.conincidencia = "Ingrese las mismas contrasenias";
 			return null;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Contexto del Administrador
+	 * 
 	 * @return
 	 */
-	
+
 	public String crear2() {
 		if (coincidirContrasenia() == true) {
 			if (validarCedula() == true) {
 				if (validarCorreo() == true) {
-					//personas.setPerfil("USUARIO"); // cambiar por administrador
+					// personas.setPerfil("USUARIO"); // cambiar por administrador
 					personas.setEstado("A");
 					pdao.guardar(personas);
 					inicializar();
@@ -128,8 +139,9 @@ public class PersonaController
 					this.conincidencia = "Grabado exitoso!";
 					return "form-update-admin";
 				} else {
-					//this.conincidencia = "El formato del correo es incorrecto";
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El formato del correo es incorrecto"));
+					// this.conincidencia = "El formato del correo es incorrecto";
+					FacesContext.getCurrentInstance().addMessage(null,
+							new FacesMessage("El formato del correo es incorrecto"));
 
 					return null;
 				}
@@ -141,16 +153,15 @@ public class PersonaController
 		} else {
 			this.conincidencia = "Ingrese las mismas contrasenias";
 			return null;
-		}	
+		}
 	}
-	
+
 	/**
 	 * inicilizar una Sesion HTTP y establecimiento de parametros en session,
 	 * FacesContext acceso tanto al contexto de JSF como HTTP
 	 */
-	
-	public void iniciarSesion()
-	{
+
+	public void iniciarSesion() {
 		if (pdao.login(personas.getCorreo(), personas.getContrasenia()).size() != 0) {
 
 			HttpSession session = SessionUtils.getSession();
@@ -162,8 +173,7 @@ public class PersonaController
 					pdao.login(personas.getCorreo(), personas.getContrasenia()).get(0).getEstado());
 			this.Loginexiste = " ";
 			FacesContext contex = FacesContext.getCurrentInstance();
-			if (pdao.login(personas.getCorreo(), personas.getContrasenia()).get(0).getPerfil()
-					.equals("USUARIO")) {
+			if (pdao.login(personas.getCorreo(), personas.getContrasenia()).get(0).getPerfil().equals("USUARIO")) {
 
 				System.out.println("CONTEXTO USER");
 				try {
@@ -181,8 +191,7 @@ public class PersonaController
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else if (pdao.login(personas.getCorreo(), personas.getContrasenia()).get(0).getPerfil()
-					.equals("ADMIN")) {
+			} else if (pdao.login(personas.getCorreo(), personas.getContrasenia()).get(0).getPerfil().equals("ADMIN")) {
 				// FacesContext contexAS= FacesContext.getCurrentInstance();
 				System.out.println("CONTEXTO ADMINN");
 				try {
@@ -197,7 +206,6 @@ public class PersonaController
 		personas.setContrasenia("");
 		this.Loginexiste = "El usuario o la contrasenia son incorrectos";
 	}
-	
 
 	/**
 	 * Comparación de los 2 campos referentes a la contrasenia,
@@ -223,7 +231,7 @@ public class PersonaController
 		personas.setApellido("");
 		personas.setNombre("");
 		personas.setContrasenia("");
-		
+
 	}
 
 	/*
@@ -234,23 +242,23 @@ public class PersonaController
 			System.out.println(personas.getPerfil());
 			if (myUser.getPerfil().equals("USUARIO")) {
 				personas.setContrasenia(pactual);
-				//pdao.updatePersona(personas);
-				//return "mainUser";
+				// pdao.updatePersona(personas);
+				// return "mainUser";
 				return null;
 			} else if (myUser.getPerfil().equals("ADMIN")) {
 				personas.setContrasenia(pactual);
 				System.out.println("ACTUALIZAR ADMIN :" + personas.getCedula());
 				System.out.println("ELSE IF ADMIN");
 				pdao.updatePersona(personas);
-				//return "mainAdmin";
+				// return "mainAdmin";
 				return null;
-				
+
 			} else if (myUser.getPerfil().equals("ADMIN-SUPER")) {
 				personas.setContrasenia(pactual);
 				System.out.println("ACTUALIZAR ADMIN :" + personas.getCedula());
 				System.out.println("ELSE IF ADMIN");
-				//pdao.updatePersona(personas);
-				//return "pages-blank";
+				// pdao.updatePersona(personas);
+				// return "pages-blank";
 				return null;
 			}
 			return null;
@@ -293,7 +301,9 @@ public class PersonaController
 		if (res == Integer.parseInt(ced.substring(9, 10))) {
 			resultado = true;
 		} else {
-			//RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO, "Datos Invalidos", "Ingrese una cedula correcta"));
+			// RequestContext.getCurrentInstance().showMessageInDialog(new
+			// FacesMessage(FacesMessage.SEVERITY_INFO, "Datos Invalidos", "Ingrese una
+			// cedula correcta"));
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Ingrese una cedula correcta"));
 			resultado = false;
 		}
@@ -309,7 +319,7 @@ public class PersonaController
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
 	}
-	
+
 	public String eliminar(String id) {
 		pdao.deletePersona(id);
 		System.out.println("Eliminado admin ..:" + personas);
@@ -338,16 +348,16 @@ public class PersonaController
 	}
 
 	public void setId(String id) {
-		System.out.println("SETTT ID ---> "+id);
+		System.out.println("SETTT ID ---> " + id);
 		this.id = id;
-		loadPersonaEditar(id);//parametros
+		loadPersonaEditar(id);// parametros
 	}
-	
-	public String loadPersonaEditar(String id){
-		
+
+	public String loadPersonaEditar(String id) {
+
 		System.out.println("Cargando datos de persona a editar" + id);
 		personas = pdao.leerPersona(id);
-		//return "listadoCategoriaAcciones";	
+		// return "listadoCategoriaAcciones";
 		return null;
 	}
 
@@ -471,49 +481,54 @@ public class PersonaController
 		this.myUser = myUser;
 	}
 
+	public List<Persona> getFilteredPersonas() {
+		return filteredPersonas;
+	}
+
+	public void setFilteredPersonas(List<Persona> filteredPersonas) {
+		this.filteredPersonas = filteredPersonas;
+	}
+
 	/**
 	 * Obtencion de la lista maestra (Persona)
 	 *
-	public String consultaLocalEventos() {
+	 * public String consultaLocalEventos() {
+	 * 
+	 * System.out.println("ID: " + idrecuprerar + " " + "ENTRA"); ListPerID =
+	 * pdao.listPersonaID(idrecuprerar); for (Persona p : ListPerID) {
+	 * System.out.println("CED====================================" +
+	 * p.getCedula()); nusuario = p.getNombre(); nlocal =
+	 * p.getLocales().get(0).getNombre(); ndescripcion =
+	 * p.getLocales().get(0).getDescripcion(); ncapacidad =
+	 * p.getLocales().get(0).getCapacidad(); ncosto =
+	 * p.getLocales().get(0).getCosto(); } return null; }
+	 */
 
-		System.out.println("ID: " + idrecuprerar + " " + "ENTRA");
-		ListPerID = pdao.listPersonaID(idrecuprerar);
-		for (Persona p : ListPerID) {
-			System.out.println("CED====================================" + p.getCedula());
-			nusuario = p.getNombre();
-			nlocal = p.getLocales().get(0).getNombre();
-			ndescripcion = p.getLocales().get(0).getDescripcion();
-			ncapacidad = p.getLocales().get(0).getCapacidad();
-			ncosto = p.getLocales().get(0).getCosto();
-		}
-		return null;
-	}
-	*/
-	
 	/**
-	 * Metodo Utilizado para la verificacion de la sesion establecida, con un respectivo contexto hacia la pagina de inicio 
-	
-	 public void verificaSesion()
-	 {
-		 HttpSession session = SessionUtils.getSession();
-			String nusv = (String) session.getAttribute("username");
-				if(nusv!=null){
-					System.out.println("si tiene sesion");
-					FacesContext contex = FacesContext.getCurrentInstance();
-			        try {
-			        	if(myUser.getPerfil().equals("USUARIO")) {
-			        		contex.getExternalContext().redirect( "mainUser.html" );	
-			        	}else if(myUser.getPerfil().equals("ADMIN")){
-			        		contex.getExternalContext().redirect( "mainAdmin.html" );
-			        	} 
-						
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-	 }
-	  */
-	
-	
+	 * Metodo Utilizado para la verificacion de la sesion establecida, con un
+	 * respectivo contexto hacia la pagina de inicio
+	 * 
+	 * public void verificaSesion() { HttpSession session =
+	 * SessionUtils.getSession(); String nusv = (String)
+	 * session.getAttribute("username"); if(nusv!=null){ System.out.println("si
+	 * tiene sesion"); FacesContext contex = FacesContext.getCurrentInstance(); try
+	 * { if(myUser.getPerfil().equals("USUARIO")) {
+	 * contex.getExternalContext().redirect( "mainUser.html" ); }else
+	 * if(myUser.getPerfil().equals("ADMIN")){ contex.getExternalContext().redirect(
+	 * "mainAdmin.html" ); }
+	 * 
+	 * } catch (IOException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } } }
+	 * @throws JRException 
+	 */
+
+	public void jasperReport() throws JRException {
+		// se muestra en una ventana aparte para su descarga
+		JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+				"C:\\Users\\Compus\\JaspersoftWorkspace\\Reportes\\pers_report.jasper", null,
+				con.conectar());
+		JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
+		jasperViewer.setVisible(true);
+	}
+
 }

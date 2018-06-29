@@ -76,7 +76,7 @@ public class Categoria {
 		if(productos==null)
 			productos = new ArrayList<>();
 			products.setCate(this);  //Cuando los foren se setean como nulos se debe manejar la relación java entre A y B, es decir, establecer 'a' en B en el método addB (b). 
-			productos.add(products);
+			productos.add(products); 
 	}
 
 	@Override

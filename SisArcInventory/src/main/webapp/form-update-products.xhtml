@@ -2,8 +2,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="index-blank-admin.xhtml">
-
+	template="index-blank-admin.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+	
 	<ui:define name="titulo">Update Productos</ui:define>
 	<ui:define name="contenido">
 		<h4 class="card-title">Listado Productos Inventario</h4>
@@ -12,36 +13,38 @@
 			<h:outputText value="No se han registrado productos aun"
 				rendered="#{empty  productoController.listaProductos()}"></h:outputText>
 
-			<h:dataTable var="listaProductos" style="color:black"
+			<p:dataTable var="listaProductos" style="color:black"
 				value="#{productoController.listaProductos()}" border="2"
-				class="table">
+				class="table"
+				paginator="true" rows="10"
+				>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Código</f:facet>
 					#{listaProductos.id}
-				</h:column>
+				</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Nombre</f:facet>
 					#{listaProductos.nombre}
-				</h:column>
+				</p:column>
 
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Descripción</f:facet>
 					#{listaProductos.descripcion}
-				</h:column>
+				</p:column>
 				
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<f:facet name="header">Precio Unitario</f:facet>
 					#{listaProductos.preciounit}
-				</h:column>
+				</p:column>
 
-				<h:column Style="color: black">
-					<f:facet name="header">Id Categoria Producto</f:facet>
-					#{listaProductos.categoria.catid}
-				</h:column>
+				<p:column Style="color: black">
+					<f:facet name="header">Categoria Perteneciente</f:facet>
+					#{listaProductos.cate.nombre}
+				</p:column>
 				
-				<h:column Style="color: black">
+				<p:column Style="color: black">
 					<center>
 						<f:facet name="header" Style="color: black">Editar</f:facet>
 					</center>
@@ -49,9 +52,9 @@
 						<a href="recuperarProduct.xhtml?id=#{listaProductos.id}"
 							class="btn btn-info btn-md"> Editar </a>
 					</center>
-				</h:column>
+				</p:column>
 
-				<h:column>
+				<p:column>
 					<center>
 						<f:facet name="header" Style="color: black">Eliminar</f:facet>
 					</center>
@@ -59,9 +62,9 @@
 						<h:commandButton value="Eliminar" class="btn btn-danger btn-md"
 						     action="#{productoController.eliminar(listaProductos.id)}"></h:commandButton>
 					</center>
-				</h:column>
+				</p:column>
 
-			</h:dataTable>
+			</p:dataTable>
 			<h:commandButton action="page-register-cat" value="Registrar nuevo Producto"
 			class="btn btn-primary" />
 

@@ -127,15 +127,16 @@ public class ProductoController
 	public void getCateProdduct()
 	{
 		List<Categoria> categoryList = catedao.getCategoriasProduct(selectedCat);
-		System.out.println("getCateProduct ---");
+		System.out.println("getCateProduct ---" + selectedCat);
+		
 		for (Categoria category : categoryList)
 		{
 			producto.setCate(category);
 			System.out.println("recupera categoria seleccionada desde select one menu ------>>> "+category.getCatid()+" - "+category.getNombre()+" - "+ category.getDescipcion());
-		}
-		productodao.guardarProducto(producto);
+			System.out.println(" PRODUCTO " + producto.getId() + " --- "+ producto.getCate().getNombre());
+			productodao.guardarProducto(producto);
+		}	
 	}
-	
 	
 	public String getSelectedProvee() {
 		return selectedProvee;

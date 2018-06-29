@@ -75,11 +75,9 @@ public class Producto
 	public Categoria getCate() {
 		return cate;
 	}
-	
 	public void setCate(Categoria cate) {
 		this.cate = cate;
 	}
-	
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + preciounit

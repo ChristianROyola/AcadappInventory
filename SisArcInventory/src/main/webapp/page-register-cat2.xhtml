@@ -35,7 +35,7 @@
 </h:head>
 
 <h:body class="fix-header fix-sidebar">
-	<ui:composition template="index.xhtml">
+	<ui:composition template="index-blank-admin2.xhtml">
 		<ui:define name="titulo">Categorias</ui:define>
 		<ui:define name="contenido">
 			<center>
@@ -59,26 +59,7 @@
 
 								<h:panelGrid columns="3">
 
-									<h:outputLabel value="Id Categoria *" for="idCategoria" />
-									<h:inputText id="idCategoria"
-										value="#{categoriaController.categoria.catid}"
-										class="form-control" pt:placeholder="Ejm:1312" />
-									<h:message for="idCategoria" />
-
-									<h:outputLabel value="Nombre Categoria *" for="nombCategoria" />
-									<h:inputText id="nombCategoria"
-										value="#{categoriaController.categoria.nombre}"
-										class="form-control" pt:placeholder="Ejm:Quimicos" />
-									<h:message for="nombCategoria" />
-
-									<h:outputLabel value="Descripción: " for="catDescripcion" />
-									<h:inputTextarea id="catDescripcion"
-										value="#{categoriaController.categoria.descipcion}"
-										class="form-control" requiredMessage="Ingrese Descripción"
-										cols="100" rows="5" />
-									<h:message for="catDescripcion" />
-
-									<h:outputLabel value="* Seleccione Categoria Producto: " />
+								<h:outputLabel value="* Seleccione Categoria Producto: " />
 									<p:selectOneMenu id="categoria"
 										value="#{productoController.selectedCat}">
 										<f:selectItems itemLabel="Seleccione una Categoria" />
@@ -97,9 +78,11 @@
 									</p:selectOneMenu>
 									<p />
 								</h:panelGrid>
+								
 								<h:commandButton action="#{categoriaController.addProdducto()}"
 									value="Registrar producto +" class="btn btn-success" />
 								<p />
+								
 								<p:dataTable var="vproduct" class="table table-hover"
 									value="#{categoriaController.categoria.productos}" border="2">
 
@@ -136,8 +119,7 @@
 									</p:column>
 								</p:dataTable>
 
-
-								<h:commandButton action="#{categoriaController.guardar()}"
+								<h:commandButton action="#{productoController.insertar()}"
 									value="Guardar" class="btn btn-success" />
 							</h:form>
 						</div>
