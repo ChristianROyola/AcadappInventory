@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.Length;
 import com.arcd.inventory.dao.CategoriaDao;
 import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Producto;
+import com.arcd.inventory.modelo.Proveedores;
 
 @ManagedBean
 @SessionScoped
@@ -30,6 +31,8 @@ public class CategoriaController {
     private String id;
 		
     public String selectedCat;
+    
+   
     
 	@PostConstruct
 	public void init(){
@@ -102,7 +105,10 @@ public class CategoriaController {
 				catedao.actualizarCategoria(categoria);
 				System.out.println(categoria.getCatid());
 			} else {
-				System.out.println("INSERTAAAA  ------->>>>> "+categoria);
+				//System.out.println("INSERTAAAA  ------->>>>> "+categoria);
+				catedao.guardarCategoria(categoria);
+				//addProdducto();
+				getCateProdduct();
 				inicializar();
 			}
 		} catch (Exception e) 
@@ -121,7 +127,7 @@ public class CategoriaController {
 	
 	public String addProdducto()
 	{
-		categoria.addProductos(new Producto());
+		categoria.addProductos(new Producto());	
 		return null;
 	}
 	
@@ -170,8 +176,13 @@ public class CategoriaController {
 		
 		for (Categoria category : categoryList)
 		{
-			System.out.println("recupera categoria seleccionada desde select one menu ------>>> "+category.getCatid()+" - "+category.getNombre()+" - "+ category.getDescipcion());
-			catedao.insetarCategoria(category);
+			System.out.println("------------------>>> "+category.getCatid()+" - "+category.getNombre()+" - "+ category.getDescipcion());
+			categoria.setCatid(category.getCatid());
+			categoria.setNombre(category.getNombre());
+			categoria.setDescipcion(category.getDescipcion());
+			//this.categoria= category;
+			//catedao.guardarCategoria(category);
+			//catedao.guardarCategoria(categoria);
 		}
 	}
 

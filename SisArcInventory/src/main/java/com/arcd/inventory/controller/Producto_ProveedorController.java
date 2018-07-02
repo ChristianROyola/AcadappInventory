@@ -1,5 +1,7 @@
 package com.arcd.inventory.controller;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,6 +23,8 @@ public class Producto_ProveedorController {
 	private Product_Proveedor prodv;
 
 	private int stock;
+	
+	 private List<Producto> filteredProducto;
 	
 	@PostConstruct
 	public void init() {
@@ -64,5 +68,14 @@ public class Producto_ProveedorController {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	public List<Producto> getFilteredProducto() {
+		return filteredProducto;
+	}
+
+	public void setFilteredProducto(List<Producto> filteredProducto) {
+		this.filteredProducto = filteredProducto;
 	}	
+
 }

@@ -38,7 +38,9 @@ public class ProductoController
 	private String selectedProvee;
 	
 	private String id;
-		
+	
+	private List<Producto> filtrolist;
+	
 	@PostConstruct
 	public void init() 
 	{
@@ -209,4 +211,13 @@ public class ProductoController
 	public void setSelectedCat(String selectedCat) {
 		this.selectedCat = selectedCat;
 	}
+
+	public List<Producto> getFiltrolist() {
+		return filtrolist;
+	}
+
+	public void setFiltrolist(List<Producto> filtrolist) {
+		this.filtrolist = filtrolist;
+	}
+
 }

@@ -59,34 +59,21 @@
 
 								<h:panelGrid columns="3">
 
-									<h:outputLabel value="Id Categoria *" for="idCategoria" />
-									<h:inputText id="idCategoria"
-										value="#{categoriaController.categoria.catid}"
-										class="form-control" pt:placeholder="Ejm:1312" />
-									<h:message for="idCategoria" />
-
-									<h:outputLabel value="Nombre Categoria *" for="nombCategoria" />
-									<h:inputText id="nombCategoria"
-										value="#{categoriaController.categoria.nombre}"
-										class="form-control" pt:placeholder="Ejm:Quimicos" />
-									<h:message for="nombCategoria" />
-
-									<h:outputLabel value="Descripción: " for="catDescripcion" />
-									<h:inputTextarea id="catDescripcion"
-										value="#{categoriaController.categoria.descipcion}"
-										class="form-control" requiredMessage="Ingrese Descripción"
-										cols="100" rows="5" />
-									<h:message for="catDescripcion" />
-
 									<h:outputLabel value="* Seleccione Categoria Producto: " />
 									<p:selectOneMenu id="categoria"
 										value="#{categoriaController.selectedCat}">
 										<f:selectItems itemLabel="Seleccione una Categoria" />
 										<f:selectItems value="#{categoriaController.allCategorias}"
 											var="categoria" itemLabel="#{categoria.description}"
-											itemValue="#{categoria}" converter="generic" />
+											itemValue="#{categoria}" converter="generic" 
+											/>
+										
+									
 									</p:selectOneMenu>
-									<p />
+									
+									<h:commandButton action="#{categoriaController.getCateProdduct()}"
+									value="Buscar Categoria" class="btn btn-success" />
+									
 									<h:outputLabel value=" * Seleccione Proveedores de Productos: " />
 									<p:selectOneMenu id="provee"
 										value="#{productoController.selectedProvee}">
@@ -95,11 +82,31 @@
 											var="provee" itemLabel="#{provee.description}"
 											itemValue="#provee" converter="generic" />
 									</p:selectOneMenu>
+									
+									<h:commandButton action="#{categoriaController.getCateProdduct()}"
+									value="Buscar Proveedor" class="btn btn-success" />
+									
+									<h:outputLabel value="Id Categoria *" for="idCategoria" />
+									<h:inputText id="idCategoria"
+										value="#{categoriaController.categoria.catid}"
+										class="form-control" readonly="true"/>
+										<p />
+									<h:outputLabel value="Nombre Categoria *" for="nombCategoria" />
+									<h:inputText id="nombCategoria"
+										value="#{categoriaController.categoria.nombre}"
+										class="form-control" readonly="true" />
+									<p />
+
+									<h:outputLabel value="Descripción: " for="catDescripcion" />
+									<h:inputTextarea id="catDescripcion"
+										value="#{categoriaController.categoria.descipcion}"
+										class="form-control"
+										cols="100" rows="5" readonly="true"/>
 									<p />
 								</h:panelGrid>
 								<h:commandButton action="#{categoriaController.addProdducto()}"
 									value="Registrar producto +" class="btn btn-success" />
-								<p />
+								
 								<p:dataTable var="vproduct" class="table table-hover"
 									value="#{categoriaController.categoria.productos}" border="2">
 
@@ -136,7 +143,7 @@
 									</p:column>
 								</p:dataTable>
 
-								<h:commandButton action="#{categoriaController.getCateProdduct()}"
+								<h:commandButton action="#{categoriaController.guardar()}"
 									value="Guardar" class="btn btn-success" />
 							</h:form>
 						</div>

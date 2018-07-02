@@ -21,9 +21,12 @@ public class CategoriaDao {
 	public void guardarCategoria(Categoria c) {
 		Categoria aux = leerCategoria(c.getCatid());
 		if (aux != null) {
+			
 			System.out.println("CategoriaDao -> guardarCategoria aux=! null");
 			actualizarCategoria(c);
+			//actualizarCategoria(c);
 		} else {
+			System.out.println("Persiste con categoria -----> "+c.getCatid());
 			insetarCategoria(c);
 		}
 	}
@@ -34,7 +37,9 @@ public class CategoriaDao {
 		return categoria;
 	}
 	
-	public void insetarCategoria(Categoria c) {
+	public void insetarCategoria(Categoria c) 
+	{ 
+		System.out.println("Recibe Categoria a persistir -----> "+c.getCatid()+" "+c.getNombre() +" "+ c.getDescipcion());
 		em.persist(c);
 	}
 
