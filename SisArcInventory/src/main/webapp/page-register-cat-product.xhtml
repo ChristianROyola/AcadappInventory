@@ -1,0 +1,259 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Registrar Categorias</title>
+</h:head>
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16"
+		href="images/favicon.png" />
+	<!-- Bootstrap Core CSS -->
+	<link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Custom CSS -->
+	<link href="css/helper.css" rel="stylesheet" />
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+	<!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</h:head>
+
+<h:body class="fix-header fix-sidebar">
+	<ui:composition template="index-blank-admin2.xhtml">
+		<ui:define name="titulo">Categorias</ui:define>
+		<ui:define name="contenido">
+			<center>
+				<!-- Main wrapper  -->
+
+				<!-- End Left Sidebar  -->
+				<!-- Page wrapper  -->
+
+
+				<!-- Start Page Content -->
+				<!-- Row -->
+				<!-- Row -->
+
+				<div class="col-lg-9">
+
+					<div class="card card-outline-primary">
+						<div class="card-header">
+							<h4 class="m-b-0 text-white">Registro Categorias Productos</h4>
+						</div>
+						<h6 class="card-subtitle">Verifique y complete la información *</h6>
+						<h:form role="form" id="formregistro">
+
+							
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="control-label text-right col-md-3">
+											Seleccione Categoria: </label>
+										<div class="col-md-6">
+											<p:selectOneMenu id="categoria2"
+												value="#{categoriaController.selectedCat}">
+												<f:selectItems itemLabel="Seleccione una Categoria" />
+												<f:selectItems value="#{categoriaController.allCategorias}"
+													var="categoria2" itemLabel="#{categoria2.description}"
+													itemValue="#{categoria2}" converter="generic" />
+											</p:selectOneMenu>
+
+										</div>
+
+										<div class="ui-g-12 ui-lg-6">
+											<h:commandButton
+												action="#{categoriaController.getCateProdduct()}"
+												value="Buscar Categoria" class="btn btn-success" />
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group has-danger row">
+										<label class="control-label text-right col-md-3">Seleccione
+											Proveedor: </label>
+										<div class="col-md-9">
+											<p:selectOneMenu id="provee3"
+												value="#{proveedorController.selectedProv}">
+												<f:selectItems itemLabel="Seleccione un Proveedor" />
+												<f:selectItems value="#{proveedorController.allProveedores}"
+													var="provee3" itemLabel="#{provee3.description}"
+													itemValue="#{provee3}" converter="generic" />
+											</p:selectOneMenu>
+										</div>
+										
+										<div class="ui-g-12 ui-lg-6">
+											<h:commandButton
+												action="#{proveedorController.getProveeProduct()}"
+												value="Buscar Proveedor" class="btn btn-success" />
+										</div>
+										
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="control-label text-right col-md-3">Id
+											Categoria</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control"
+												value="#{categoriaController.categoria.catid}"
+												readonly="true" />
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group has-danger row">
+										<label class="control-label text-right col-md-3">Id
+											Proveedor</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control"
+												value="#{proveedorController.proveedores.id}"
+												readonly="true" />
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="control-label text-right col-md-3">Nombre
+											Categoria</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control"
+												value="#{categoriaController.categoria.nombre}"
+												readonly="true" />
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="control-label text-right col-md-3">Nombre
+											Proveedor</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control"
+												value="#{proveedorController.proveedores.nombre}"
+												readonly="true" />
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="control-label text-right col-md-3">Descrip.
+											Categoria</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control"
+												value="#{categoriaController.categoria.descipcion}"
+												readonly="true" />
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label class="control-label text-right col-md-3">Descrip
+											Proveedor</label>
+										<div class="col-md-9">
+											<input type="text" class="form-control"
+												value="#{proveedorController.proveedores.descripcion}"
+												readonly="true" />
+										</div>
+									</div>
+								</div>
+								<!--/span-->
+							</div>
+
+							
+							<div class="col-md-6">
+									<div class="form-group row">
+										<label class="control-label text-right col-md-3"></label>
+										<div class="col-md-9">
+											<h:commandButton action="#{categoriaController.addProdducto()}"
+								value="Registrar producto +" class="btn btn-success" />
+										</div>
+									</div>
+								</div>
+							
+							
+							
+							<p:dataTable var="vproduct" class="table table-hover"
+								value="#{categoriaController.categoria.productos}" border="2">
+
+								<p:column Style="color: black">
+									<f:facet name="header">Id *</f:facet>
+									<h:inputText value="#{vproduct.id}" />
+								</p:column>
+
+								<p:column Style="color: black">
+									<f:facet name="header">Nombre *</f:facet>
+									<h:inputText value="#{vproduct.nombre}" />
+								</p:column>
+
+								<p:column Style="color: black">
+									<f:facet name="header">Descripción* </f:facet>
+									<h:inputText value="#{vproduct.descripcion}" />
+								</p:column>
+
+								<p:column Style="color: black">
+									<f:facet name="header">V.Unitario *</f:facet>
+									<h:inputText value="#{vproduct.preciounit}" />
+								</p:column>
+
+								<p:column Style="color: black">
+									<f:facet name="header">Descuento *</f:facet>
+									<h:inputText
+										value="#{producto_ProveedorController.prodv.descuento}" />
+								</p:column>
+
+								<p:column Style="color: black">
+									<f:facet name="header"> V. Final *</f:facet>
+									<h:inputText
+										value="#{producto_ProveedorController.prodv.preciofinal}" />
+								</p:column>
+								
+								<p:column Style="color: black">
+									<f:facet name="header">Existencia *</f:facet>
+									<h:inputText
+										value="#{producto_ProveedorController.prodv.preciofinal}" />
+								</p:column>
+								
+							</p:dataTable>
+
+							<h:commandButton action="#{categoriaController.guardar()}"
+								value="Guardar" class="btn btn-success" />
+						</h:form>
+					</div>
+				</div>
+
+			</center>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

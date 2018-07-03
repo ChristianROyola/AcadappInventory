@@ -194,4 +194,9 @@ public class CategoriaController {
 		this.selectedCat = selectedCat;
 	}
 	
+	public void savesimpleCagetoria()
+	{
+		catedao.guardarCategoria(categoria);
+	}
+	
 }

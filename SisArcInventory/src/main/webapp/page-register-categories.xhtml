@@ -32,11 +32,11 @@
     <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-</head>
+</head> 
 
 <h:body class="fix-header fix-sidebar">
-	<ui:composition template="index-blank.xhtml">
-		<ui:define name="titulo">Productos</ui:define>
+	<ui:composition template="index-blank-admin.xhtml">
+		<ui:define name="titulo">Categorias</ui:define>
 		<ui:define name="contenido">
 			<center>
 				<!-- Main wrapper  -->
@@ -52,13 +52,19 @@
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Registro Productos Inventario</h4>
+							<h4 class="card-title">Registro Categorias Productos</h4>
 							<h6 class="card-subtitle">Verifique y complete la
 								información</h6>
 							<h:form role="form" id="formregistro">
 								<h:panelGrid columns="3">
 
-									<h:outputLabel value="Nombre Categoria:" for="nombCategoria" />
+									<h:outputLabel value="Codigo Categoria: *" for="idCategoria" />
+									<h:inputText id="idCategoria"
+										value="#{categoriaController.categoria.catid}" class="form-control"
+										pt:placeholder="Ejm:101" />
+									<h:message for="idCategoria" />
+									
+									<h:outputLabel value="Nombre Categoria: *" for="nombCategoria" />
 									<h:inputText id="nombCategoria"
 										value="#{categoriaController.categoria.nombre}" class="form-control"
 										pt:placeholder="Ejm:Quimicos" />
@@ -70,29 +76,8 @@
 										class="form-control" requiredMessage="Ingrese Descripcion"
 										cols="100" rows="5" />
 									<h:message for="catDescripcion" />
-
-									<h:outputLabel value="Nombre Producto" for="nombProduct" />
-									<h:inputTextarea id="nombProduct"
-										value="#{productoController.producto.nombre}"
-										class="form-control" requiredMessage="Ingrese Nombre Producto"
-										cols="100" rows="5" />
-									<h:message for="nombProduct" />
-									
-									<h:outputLabel value="Descripción Producto" for="descProduct" />
-									<h:inputTextarea id="descProduct"
-										value="#{productoController.producto.descripcion}"
-										class="form-control" requiredMessage="Ingrese descripcion Producto"
-										cols="100" rows="5" />
-									<h:message for="descProduct" />
-									
-								    <h:outputLabel value="Precio Unitario" for="precProduct" />
-									<h:inputTextarea id="precProduct"
-										value="#{productoController.producto.preciounit}"
-										class="form-control" requiredMessage="Ingrese Nombre Producto"
-										cols="100" rows="5" />
-									<h:message for="precProduct" />
-									
-									<h:commandButton action="#{productoController.insertar()}" 
+																		
+									<h:commandButton action="#{categoriaController.savesimpleCagetoria()}" 
 										value="Guardar" class="btn btn-success" />
 								</h:panelGrid>
 							</h:form>

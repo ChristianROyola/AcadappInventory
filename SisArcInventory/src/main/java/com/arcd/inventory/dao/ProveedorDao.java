@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Proveedores;
 
 
@@ -82,6 +83,14 @@ public class ProveedorDao
 		Query query = em.createQuery("SELECT c from Proveedores c", Proveedores.class);
 		List<Proveedores> categorias = query.getResultList();
 		return categorias;
+	}
+	
+	public List<Proveedores> getProveeProduct(String id)
+	{
+		Query query = em.createQuery("SELECT c FROM Proveedores c WHERE c.id = "+id, Proveedores.class);
+		List<Proveedores> proveedores = query.getResultList();
+		return proveedores;
+		//entityManager.createQuery("SELECT avg(responseEnd - responseStart)  FROM QualiteDeService q  join q.test",Double.class );
 	}
 	
 }

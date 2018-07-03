@@ -19,6 +19,7 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
 import com.arcd.inventory.dao.ProveedorDao;
+import com.arcd.inventory.modelo.Categoria;
 import com.arcd.inventory.modelo.Proveedores;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -160,6 +161,30 @@ public class ProveedorController {
             }
         }
     }
+    
+    
+	public void getProveeProduct()
+	{
+		List<Proveedores> proveedList = pdao.getProveeProduct(selectedProv);
+		System.out.println("getProveedoresProduct ---" + selectedProv);
+		
+		for (Proveedores proveed : proveedList)
+		{
+			System.out.println("------------------>>> "+proveed.getId()+" - "+proveed.getNombre()+" - "+ proveed.getFechregistro());
+			proveedores.setId(proveed.getId());
+			proveedores.setNombre(proveed.getNombre());
+			proveedores.setDireccion(proveed.getDireccion());
+			proveedores.setTelefono(proveed.getTelefono());
+			proveedores.setFechregistro(proveed.getFechregistro());
+			proveedores.setDescripcion(proveed.getDescripcion());
+			proveedores.setCorreo(proveed.getCorreo());
+			
+			//this.categoria= category;
+			//catedao.guardarCategoria(category);
+			//catedao.guardarCategoria(categoria);
+		}
+	}
+    
     
 	public String getSelectedProv() {
 		return selectedProv;

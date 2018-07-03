@@ -13,12 +13,13 @@
 				rendered="#{empty  productoController.listaProductos()}"></h:outputText>
 
 			<p:dataTable var="listaproduct" style="color:black" paginator="true"
-				rows="10" value="#{productoController.lproducto}" border="2"
+				rows="10" value="#{productoController.listaProductos()}" border="2"
 				class="table table-hover"
 				filteredValue="#{productoController.filtrolist}"
-				widgetVar="ProdTable">
+				widgetVar="ProdTable"
+				emptyMessage="No se han encontrado productos con esa busqueda" >
 
-				<f:facet name="header">
+				<f:facet name="header">  
 					<p:outputPanel>
 						<h:outputText value="Buscar en todos los campos:" />
 						<p:inputText id="globalFilter" onkeyup="PF('ProdTable').filter()"
@@ -30,7 +31,6 @@
 					filterMatchMode="contains">
 					<h:outputText value="#{listaproduct.id}" />
 				</p:column>
-
 
 				<p:column headerText="Nombre" filterBy="#{listaproduct.nombre}"
 					filterMatchMode="contains">
